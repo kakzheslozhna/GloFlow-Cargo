@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа — GloFlow Cargo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-wrapper">
+        <div class="form-container">
+            <!-- HEADER -->
+            <div class="form-header">
+                <div class="logo">
+                    <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="url(#logo-gradient)"/><path d="M15.5 28C22.4036 28 28 22.4036 28 15.5C28 8.59644 22.4036 3 15.5 3C8.59644 3 3 8.59644 3 15.5C3 22.4036 8.59644 28 15.5 28Z" fill="white" style="mix-blend-mode:overlay"/><defs><linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#8E2DE2"/><stop offset="1" stop-color="#4A00E0"/></linearGradient></defs></svg>
+                    <span class="logo-text">GloFlow Cargo</span>
+                </div>
+                <div class="form-progress">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1"><span>1</span></div>
+                        <div class="progress-step" data-step="2"><span>2</span></div>
+                        <div class="progress-step" data-step="3"><span>3</span></div>
+                        <div class="progress-step" data-step="4"><span>4</span></div>
+                    </div>
+                </div>
+                 <div class="mobile-step-indicator">
+                    Шаг <span id="mobile-current-step">1</span> из 4
+                </div>
+            </div>
+
+            <!-- FORM STEPS -->
+            <form id="multi-step-form">
+                <div class="form-steps-container">
+
+                    <!-- Шаг 1: Контактные данные -->
+                    <div class="form-step active" data-step="1">
+                        <h3 class="step-title">Контактные данные</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="order-type">Как будете оформлять заказ?</label>
+                                <select id="order-type" name="order-type" required>
+                                    <option value="" disabled selected>Выберите тип</option>
+                                    <option value="Самозанятый">Самозанятый</option>
+                                    <option value="ИП">ИП</option>
+                                    <option value="Компания">Компания</option>
+                                </select>
+                                <div class="error-message">Выберите один из вариантов</div>
+                            </div>
+
+                            <!-- Блок для полей компании/ИП -->
+                            <div class="form-group full-width hidden-field" id="company-fields">
+                                <div class="form-group">
+                                    <label for="company-name">Название компании / ИП</label>
+                                    <input type="text" id="company-name" name="company-name" placeholder="ООО 'Ромашка' или ИП Иванов И.И.">
+                                    <div class="error-message">Укажите название</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inn">ИНН</label>
+                                    <input type="text" id="inn" name="inn" placeholder="1234567890">
+                                    <div class="error-message">Укажите ИНН</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group"><label for="first-name">Имя</label><input type="text" id="first-name" name="first-name" placeholder="Иван" required><div class="error-message">Введите ваше имя</div></div>
+                            <div class="form-group"><label for="last-name">Фамилия</label><input type="text" id="last-name" name="last-name" placeholder="Иванов" required><div class="error-message">Введите вашу фамилию</div></div>
+                            <div class="form-group"><label for="phone">Телефон (WhatsApp)</label><input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required><div class="error-message">Неверный формат номера</div></div>
+                            <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" placeholder="example@mail.com" required><div class="error-message">Неверный формат E-mail</div></div>
+                        </div>
+                        <div class="buttons-group"><button type="button" class="next-step-btn primary-button">Далее</button></div>
+                    </div>
+
+                    <!-- Шаг 2: Груз -->
+                    <div class="form-step" data-step="2">
+                        <h3 class="step-title">Параметры груза</h3>
+                        <div class="form-grid">
+                            <div class="form-group"><label for="cargo-type">Тип поставки</label><select id="cargo-type" name="cargo-type" required><option value="" disabled selected>Выберите тип</option><option value="Короба">Короба</option><option value="Палеты">Палеты</option></select><div class="error-message">Пожалуйста, выберите тип</div></div>
+                            <div class="form-group"><label for="shipment-form">Форма отгрузки</label><select id="shipment-form" name="shipment-form" required><option value="" disabled selected>Выберите форму</option><option value="Со склада">Со склада</option><option value="От поставщика">От поставщика</option></select><div class="error-message">Пожалуйста, выберите форму</div></div>
+                            <div class="form-group full-width"><label for="declared-value">Объявленная стоимость груза (₽)</label><input type="number" id="declared-value" name="declared-value" placeholder="Например: 150000" required><div class="error-message">Укажите стоимость</div></div>
+                        </div>
+                        <div class="buttons-group"><button type="button" class="prev-step-btn secondary-button">Назад</button><button type="button" class="next-step-btn primary-button">Далее</button></div>
+                    </div>
+                    
+                    <!-- Шаг 3: Перевозка -->
+                    <div class="form-step" data-step="3">
+                        <h3 class="step-title">Детали перевозки</h3>
+                        <div class="form-grid">
+                            <div class="form-group"><label for="pickup-warehouse">Склад погрузки</label><select id="pickup-warehouse" name="pickup-warehouse" required><option value="" disabled selected>Выберите склад</option><option value="Краснодар, Ростовское шоссе">Краснодар, Ростовское шоссе</option><option value="Ростов-на-Дону, ул. Туполева">Ростов-на-Дону, ул. Туполева</option><option value="Подольск, Суворова">Подольск, Суворова</option></select><div class="error-message">Выберите склад</div></div>
+                            <div class="form-group"><label for="marketplace-warehouse">Склад маркетплейса</label><select id="marketplace-warehouse" name="marketplace-warehouse" required><option value="" disabled selected>Выберите склад</option><option value="WB Владимир">WB Владимир</option><option value="WB Казань">WB Казань</option><option value="WB Коледино">WB Коледино</option></select><div class="error-message">Выберите склад</div></div>
+                             <div class="form-group full-width"><label for="delivery-date">Дата поставки на Маркетплейс</label><input type="date" id="delivery-date" name="delivery-date" required><div class="error-message">Укажите дату</div></div>
+                        </div>
+                        <div class="buttons-group"><button type="button" class="prev-step-btn secondary-button">Назад</button><button type="button" class="next-step-btn primary-button">Далее</button></div>
+                    </div>
+
+                    <!-- Шаг 4: Оплата -->
+                    <div class="form-step" data-step="4">
+                        <h3 class="step-title">Оплата и подтверждение</h3>
+                        <div class="form-grid">
+                             <div class="form-group full-width"><label for="payment-method">Способ оплаты</label><select id="payment-method" name="payment-method" required><option value="" disabled selected>Выберите способ</option><option value="По карте">По карте</option><option value="По счету (для ЮР. лиц)">По счету (для ЮР. лиц)</option></select><div class="error-message">Выберите способ оплаты</div></div>
+                             <div class="form-group checkbox-group full-width"><input type="checkbox" id="agree-terms" name="agree-terms" required><label for="agree-terms">Я принимаю <a href="#">условия соглашения</a></label><div class="error-message">Необходимо принять условия</div></div>
+                             <div class="form-group checkbox-group full-width"><input type="checkbox" id="agree-offer" name="agree-offer" required><label for="agree-offer">Я ознакомлен с <a href="#">договором оферты</a></label><div class="error-message">Необходимо принять условия</div></div>
+                        </div>
+                        <div class="buttons-group"><button type="button" class="prev-step-btn secondary-button">Назад</button><button type="submit" class="primary-button">Отправить заявку</button></div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- SUCCESS SCREEN -->
+            <div class="form-success">
+                <div class="success-icon-wrapper">
+                    <svg class="success-icon" viewBox="0 0 50 50"><path class="checkmark-circle" fill="none" d="M25 4C13.4 4 4 13.4 4 25s9.4 21 21 21 21-9.4 21-21S36.6 4 25 4z"/><path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                </div>
+                <h3>Заявка принята!</h3>
+                <p>Мы получили ваши данные и скоро свяжемся с вами. Спасибо!</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
