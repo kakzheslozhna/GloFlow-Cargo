@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- ПЕРЕМЕННЫЕ И ОСНОВНЫЕ ФУНКЦИИ (без изменений) ---
+    // --- ПЕРЕМЕННЫЕ И ОСНОВНЫЕ ФУНКЦИИ ---
     const form = document.getElementById('multi-step-form');
     const formStepsContainer = document.querySelector('.form-steps-container');
     const steps = Array.from(document.querySelectorAll('.form-step'));
@@ -8,6 +8,80 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileStepIndicator = document.getElementById('mobile-current-step');
     const successScreen = document.querySelector('.form-success');
     let currentStep = 1;
+
+    // --- НОВЫЙ КОД ДЛЯ КАСТОМНОГО SELECT ---
+    const isDesktop = window.matchMedia("(min-width: 769px)").matches;
+
+    if (isDesktop) {
+        document.querySelectorAll('select').forEach(setupCustomSelect);
+    }
+
+    function setupCustomSelect(selectElement) {
+        const customSelectContainer = document.createElement('div');
+        customSelectContainer.className = 'custom-select-container';
+
+        const customSelectTrigger = document.createElement('div');
+        customSelectTrigger.className = 'custom-select-trigger';
+        
+        const customSelectOptions = document.createElement('div');
+        customSelectOptions.className = 'custom-select-options';
+
+        // Создаем триггер и опции
+        selectElement.querySelectorAll('option').forEach(optionElement => {
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'custom-select-option';
+            optionDiv.textContent = optionElement.textContent;
+            optionDiv.dataset.value = optionElement.value;
+
+            if (optionElement.selected) {
+                customSelectTrigger.textContent = optionElement.textContent;
+                if(optionElement.disabled) { // Для плейсхолдера
+                     customSelectTrigger.classList.add('placeholder');
+                }
+                optionDiv.classList.add('selected');
+            }
+            if (optionElement.disabled) { // Не добавляем плейсхолдер в список
+                return;
+            }
+
+            optionDiv.addEventListener('click', () => {
+                customSelectTrigger.textContent = optionDiv.textContent;
+                customSelectTrigger.classList.remove('placeholder');
+                
+                selectElement.value = optionDiv.dataset.value;
+                
+                // Обновляем "selected" класс
+                customSelectOptions.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+                optionDiv.classList.add('selected');
+                
+                customSelectContainer.classList.remove('open');
+
+                // Имитируем событие 'change' для оригинального select, чтобы сработала логика показа полей ИНН
+                selectElement.dispatchEvent(new Event('change'));
+            });
+
+            customSelectOptions.appendChild(optionDiv);
+        });
+
+        customSelectTrigger.addEventListener('click', () => {
+            customSelectContainer.classList.toggle('open');
+        });
+
+        customSelectContainer.appendChild(customSelectTrigger);
+        customSelectContainer.appendChild(customSelectOptions);
+        selectElement.parentNode.appendChild(customSelectContainer);
+    }
+    
+    // Закрытие селекта при клике вне его
+    window.addEventListener('click', (e) => {
+        if (!e.target.closest('.custom-select-container')) {
+            document.querySelectorAll('.custom-select-container.open').forEach(container => {
+                container.classList.remove('open');
+            });
+        }
+    });
+    // --- КОНЕЦ КОДА ДЛЯ КАСТОМНОГО SELECT ---
+
 
     // --- ЛОГИКА ДЛЯ СКРЫТЫХ ПОЛЕЙ "КОМПАНИЯ/ИНН" ---
     const orderTypeSelect = document.getElementById('order-type');
@@ -28,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- ОСТАЛЬНОЙ КОД ОСТАЕТСЯ БЕЗ ИЗМЕНЕНИЙ ---
     const updateTotalProgress = () => {
         const percent = ((currentStep - 1) / (steps.length - 1)) * 100;
         progressBarFill.style.width = `${percent}%`;
@@ -78,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (e.target.matches('.prev-step-btn')) { goToStep(currentStep - 1); }
     });
 
-    // --- ОБРАБОТЧИК ОТПРАВКИ ФОРМЫ НА PYTHON-СЕРВЕР ---
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!validateStep(currentStep)) return;
@@ -87,25 +161,17 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.disabled = true;
         submitButton.textContent = 'Отправка...';
 
-        // Адрес нашего локального Flask-сервера
         const backendUrl = 'http://127.0.0.1:5000/api/send-form';
-        
         const formData = new FormData(form);
 
         try {
-            const response = await fetch(backendUrl, {
-                method: 'POST',
-                body: formData,
-            });
-
+            const response = await fetch(backendUrl, { method: 'POST', body: formData });
             if (response.ok) {
-                // Сервер вернул успешный ответ
                 const result = await response.json();
                 console.log('SUCCESS!', result.message);
                 form.style.display = 'none';
                 successScreen.style.display = 'block';
             } else {
-                // Сервер вернул ошибку
                 const errorResult = await response.json();
                 console.error('FAILED...', errorResult.error);
                 alert('Ошибка отправки: ' + errorResult.error);
@@ -113,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.textContent = 'Отправить заявку';
             }
         } catch (error) {
-            // Ошибка сети (например, сервер не запущен)
             console.error('NETWORK ERROR:', error);
             alert('Не удалось связаться с сервером. Убедитесь, что Python-скрипт запущен, и попробуйте снова.');
             submitButton.disabled = false;
