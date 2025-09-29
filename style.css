@@ -40,7 +40,6 @@ body {
     padding: 40px;
     position: relative;
 }
-/* ... (секция header и progress без изменений) ... */
 .form-header { margin-bottom: 30px; text-align: center; }
 .logo { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 30px; }
 .logo-icon { border-radius: 50%; box-shadow: 0 4px 15px rgba(74, 0, 224, 0.2); }
@@ -69,14 +68,13 @@ body {
     padding: 0 5px;
     flex-shrink: 0;
     min-height: 420px;
-    /* ИЗМЕНЕНО: Упрощаем анимацию, чтобы избежать багов рендеринга */
     opacity: 0;
     transition: opacity var(--transition-speed) ease;
-    pointer-events: none; /* Запрещаем взаимодействие с неактивными шагами */
+    pointer-events: none;
 }
 .form-step.active {
     opacity: 1;
-    pointer-events: auto; /* Разрешаем взаимодействие с активным шагом */
+    pointer-events: auto;
 }
 .step-title {
     font-size: 1.8rem;
@@ -98,7 +96,6 @@ body {
     margin-bottom: 8px;
     display: block;
 }
-/* Общие стили для всех полей ввода, кроме чекбоксов */
 .form-group input:not([type="checkbox"]),
 .form-group select {
     -webkit-appearance: none;
@@ -128,9 +125,8 @@ body {
 }
 input::placeholder { color: #aab2c4; }
 
-/* ИЗМЕНЕНО: Добавляем -webkit-appearance для надежности */
 input[type="date"] {
-    -webkit-appearance: none; /* Важно для iOS */
+    -webkit-appearance: none;
     position: relative;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235c677d' viewBox='0 0 16 16'%3E%3Cpath d='M8 2a.5.5 0 0 1 .5.5v1h3V3a.5.5 0 0 1 1 0v.5h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V3a.5.5 0 0 1 1 0v.5h3v-1A.5.5 0 0 1 8 2M2.5 4a.5.5 0 0 0-.5.5v1h11V4.5a.5.5 0 0 0-.5-.5zM14 6H2v7a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -146,7 +142,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 input[type="date"]:not(.has-value) { color: transparent; }
 input[type="date"].has-value { color: var(--text-color); }
 
-/* ... (остальной CSS код без изменений) ... */
 @media (min-width: 769px) { .form-group select { display: none; } .custom-select-container { position: relative; width: 100%; cursor: pointer; } .custom-select-trigger { width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-size: 1rem; color: var(--text-color); background-color: #fcfdff; transition: all var(--transition-speed) ease; display: flex; justify-content: space-between; align-items: center; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235c677d' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; background-size: 16px; } .custom-select-container.open .custom-select-trigger { border-color: var(--border-color-focus); box-shadow: 0 0 0 3px rgba(74, 0, 224, 0.15); } .custom-select-trigger.placeholder { color: #aab2c4; } .custom-select-options { position: absolute; top: calc(100% + 5px); left: 0; right: 0; background: var(--form-background); border-radius: var(--border-radius); box-shadow: var(--shadow); border: 1px solid var(--border-color); z-index: 10; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all var(--transition-speed) ease; max-height: 200px; overflow-y: auto; } .custom-select-container.open .custom-select-options { opacity: 1; visibility: visible; transform: translateY(0); } .custom-select-option { padding: 12px 15px; font-size: 1rem; transition: background-color 0.2s ease, color 0.2s ease; } .custom-select-option:not(:last-child) { border-bottom: 1px solid var(--border-color); } .custom-select-option:hover { background-color: #f4f7fc; } .custom-select-option.selected { background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple)); color: white; font-weight: 500; } }
 .checkbox-group { display: flex; align-items: center; gap: 10px; } .checkbox-group input[type="checkbox"] { width: 24px; height: 24px; -webkit-appearance: none; appearance: none; background-color: #fff; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; position: relative; transition: all 0.2s ease; flex-shrink: 0; } .checkbox-group input[type="checkbox"]:checked { background-color: var(--primary-purple); border-color: var(--primary-purple); background-image: url("data:image/svg+xml,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5.5L5 9.5L13 1.5' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A"); background-repeat: no-repeat; background-position: center; background-size: 12px; } .checkbox-group input[type="checkbox"]:checked::before { content: ''; } .checkbox-group input[type="checkbox"]:focus { outline: none; box-shadow: 0 0 0 3px rgba(74, 0, 224, 0.15); } .checkbox-group label { margin: 0; cursor: pointer; font-size: 0.9rem; } .checkbox-group label a { color: var(--primary-purple); text-decoration: none; font-weight: 500; } .checkbox-group label a:hover { text-decoration: underline; }
 .buttons-group { display: flex; gap: 15px; margin-top: 30px; } .primary-button, .secondary-button { flex: 1; padding: 14px 20px; border: none; border-radius: var(--border-radius); font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition-speed) ease; text-align: center; text-decoration: none; } .primary-button { background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple)); color: white; box-shadow: 0 5px 15px rgba(74, 0, 224, 0.25); } .primary-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(74, 0, 224, 0.3); } .primary-button:active { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(74, 0, 224, 0.3); } .secondary-button { background-color: #eef2f9; color: var(--label-color); } .secondary-button:hover { background-color: #e3e9f4; }
