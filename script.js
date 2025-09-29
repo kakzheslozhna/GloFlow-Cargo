@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- ПЕРЕМЕННЫЕ И ОСНОВНЫЕ ФУНКЦИИ ---
     const form = document.getElementById('multi-step-form');
     const formStepsContainer = document.querySelector('.form-steps-container');
     const steps = Array.from(document.querySelectorAll('.form-step'));
@@ -9,80 +8,83 @@ document.addEventListener('DOMContentLoaded', () => {
     const successScreen = document.querySelector('.form-success');
     let currentStep = 1;
 
-    // --- НОВЫЙ КОД ДЛЯ КАСТОМНОГО SELECT ---
+    // --- ЛОГИКА КАСТОМНОГО SELECT ДЛЯ ДЕСКТОПА ---
     const isDesktop = window.matchMedia("(min-width: 769px)").matches;
 
     if (isDesktop) {
         document.querySelectorAll('select').forEach(setupCustomSelect);
-    }
 
-    function setupCustomSelect(selectElement) {
-        const customSelectContainer = document.createElement('div');
-        customSelectContainer.className = 'custom-select-container';
+        function setupCustomSelect(selectElement) {
+            const customSelectContainer = document.createElement('div');
+            customSelectContainer.className = 'custom-select-container';
+            const customSelectTrigger = document.createElement('div');
+            customSelectTrigger.className = 'custom-select-trigger';
+            const customSelectOptions = document.createElement('div');
+            customSelectOptions.className = 'custom-select-options';
 
-        const customSelectTrigger = document.createElement('div');
-        customSelectTrigger.className = 'custom-select-trigger';
-        
-        const customSelectOptions = document.createElement('div');
-        customSelectOptions.className = 'custom-select-options';
-
-        // Создаем триггер и опции
-        selectElement.querySelectorAll('option').forEach(optionElement => {
-            const optionDiv = document.createElement('div');
-            optionDiv.className = 'custom-select-option';
-            optionDiv.textContent = optionElement.textContent;
-            optionDiv.dataset.value = optionElement.value;
-
-            if (optionElement.selected) {
-                customSelectTrigger.textContent = optionElement.textContent;
-                if(optionElement.disabled) { // Для плейсхолдера
-                     customSelectTrigger.classList.add('placeholder');
+            selectElement.querySelectorAll('option').forEach(optionElement => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'custom-select-option';
+                optionDiv.textContent = optionElement.textContent;
+                optionDiv.dataset.value = optionElement.value;
+                if (optionElement.selected) {
+                    customSelectTrigger.textContent = optionElement.textContent;
+                    if (optionElement.disabled) customSelectTrigger.classList.add('placeholder');
+                    optionDiv.classList.add('selected');
                 }
-                optionDiv.classList.add('selected');
-            }
-            if (optionElement.disabled) { // Не добавляем плейсхолдер в список
-                return;
-            }
-
-            optionDiv.addEventListener('click', () => {
-                customSelectTrigger.textContent = optionDiv.textContent;
-                customSelectTrigger.classList.remove('placeholder');
-                
-                selectElement.value = optionDiv.dataset.value;
-                
-                // Обновляем "selected" класс
-                customSelectOptions.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
-                optionDiv.classList.add('selected');
-                
-                customSelectContainer.classList.remove('open');
-
-                // Имитируем событие 'change' для оригинального select, чтобы сработала логика показа полей ИНН
-                selectElement.dispatchEvent(new Event('change'));
+                if (optionElement.disabled) return;
+                optionDiv.addEventListener('click', () => {
+                    customSelectTrigger.textContent = optionDiv.textContent;
+                    customSelectTrigger.classList.remove('placeholder');
+                    selectElement.value = optionDiv.dataset.value;
+                    customSelectOptions.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+                    optionDiv.classList.add('selected');
+                    customSelectContainer.classList.remove('open');
+                    selectElement.dispatchEvent(new Event('change'));
+                });
+                customSelectOptions.appendChild(optionDiv);
             });
 
-            customSelectOptions.appendChild(optionDiv);
-        });
+            customSelectTrigger.addEventListener('click', () => {
+                // Закрываем все другие открытые селекты перед открытием нового
+                document.querySelectorAll('.custom-select-container.open').forEach(container => {
+                    if (container !== customSelectContainer) {
+                        container.classList.remove('open');
+                    }
+                });
+                customSelectContainer.classList.toggle('open');
+            });
 
-        customSelectTrigger.addEventListener('click', () => {
-            customSelectContainer.classList.toggle('open');
-        });
+            customSelectContainer.appendChild(customSelectTrigger);
+            customSelectContainer.appendChild(customSelectOptions);
+            selectElement.parentNode.appendChild(customSelectContainer);
+        }
 
-        customSelectContainer.appendChild(customSelectTrigger);
-        customSelectContainer.appendChild(customSelectOptions);
-        selectElement.parentNode.appendChild(customSelectContainer);
+        // ИЗМЕНЕНО: Этот обработчик теперь работает ТОЛЬКО на десктопе, решая проблему на мобильных
+        window.addEventListener('click', (e) => {
+            if (!e.target.closest('.custom-select-container')) {
+                document.querySelectorAll('.custom-select-container.open').forEach(container => {
+                    container.classList.remove('open');
+                });
+            }
+        });
     }
     
-    // Закрытие селекта при клике вне его
-    window.addEventListener('click', (e) => {
-        if (!e.target.closest('.custom-select-container')) {
-            document.querySelectorAll('.custom-select-container.open').forEach(container => {
-                container.classList.remove('open');
-            });
-        }
-    });
-    // --- КОНЕЦ КОДА ДЛЯ КАСТОМНОГО SELECT ---
-
-
+    // --- НОВОЕ: ЛОГИКА ДЛЯ СТИЛИЗАЦИИ ПОЛЯ ДАТЫ ---
+    const dateInput = document.getElementById('delivery-date');
+    if (dateInput) {
+        dateInput.addEventListener('change', () => {
+            if (dateInput.value) {
+                dateInput.classList.add('has-value');
+            } else {
+                dateInput.classList.remove('has-value');
+            }
+        });
+        // Устанавливаем минимальную дату на сегодня
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+    
     // --- ЛОГИКА ДЛЯ СКРЫТЫХ ПОЛЕЙ "КОМПАНИЯ/ИНН" ---
     const orderTypeSelect = document.getElementById('order-type');
     const companyFieldsContainer = document.getElementById('company-fields');
@@ -101,23 +103,28 @@ document.addEventListener('DOMContentLoaded', () => {
             innInput.required = false;
         }
     });
-
-    // --- ОСТАЛЬНОЙ КОД ОСТАЕТСЯ БЕЗ ИЗМЕНЕНИЙ ---
+    
+    // --- ЛОГИКА НАВИГАЦИИ ПО ШАГАМ ---
     const updateTotalProgress = () => {
         const percent = ((currentStep - 1) / (steps.length - 1)) * 100;
         progressBarFill.style.width = `${percent}%`;
         progressSteps.forEach((step, index) => {
-            if (index < currentStep) step.classList.add('active'); else step.classList.remove('active');
+            step.classList.toggle('active', index < currentStep);
         });
         if(mobileStepIndicator) mobileStepIndicator.textContent = currentStep;
     };
+    
     const goToStep = (stepNumber) => {
         currentStep = stepNumber;
-        const stepWidthPercentage = 100 / steps.length;
-        const offset = -(currentStep - 1) * stepWidthPercentage;
+        // ИЗМЕНЕНО: Управляем активным классом для CSS анимации видимости
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', (index + 1) === currentStep);
+        });
+        const offset = -(currentStep - 1) * 25; // Ширина шага 25% (100% / 4 шага)
         formStepsContainer.style.transform = `translateX(${offset}%)`;
         updateTotalProgress();
     };
+
     const validateStep = (stepNumber) => {
         let isValid = true;
         const currentStepElement = steps[stepNumber - 1];
@@ -134,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return isValid;
     };
+
     const phoneInput = document.getElementById('phone');
     if (phoneInput) {
         phoneInput.addEventListener('input', (e) => {
@@ -145,9 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (value.length >= 4) formattedValue += ') ' + value.substring(3, 6);
             if (value.length >= 7) formattedValue += '-' + value.substring(6, 8);
             if (value.length >= 9) formattedValue += '-' + value.substring(8, 10);
-            e.target.value = formattedValue;
+            e.target.value = formattedValue.substring(0, 18); // Ограничиваем длину
         });
     }
+
     form.addEventListener('click', (e) => {
         if (e.target.matches('.next-step-btn')) { if (validateStep(currentStep)) goToStep(currentStep + 1); } 
         else if (e.target.matches('.prev-step-btn')) { goToStep(currentStep - 1); }
@@ -156,35 +165,27 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!validateStep(currentStep)) return;
-
         const submitButton = form.querySelector('button[type="submit"]');
         submitButton.disabled = true;
         submitButton.textContent = 'Отправка...';
-
-        const backendUrl = 'http://127.0.0.1:5000/api/send-form';
-        const formData = new FormData(form);
-
         try {
-            const response = await fetch(backendUrl, { method: 'POST', body: formData });
+            const response = await fetch('http://127.0.0.1:5000/api/send-form', { method: 'POST', body: new FormData(form) });
             if (response.ok) {
-                const result = await response.json();
-                console.log('SUCCESS!', result.message);
                 form.style.display = 'none';
                 successScreen.style.display = 'block';
             } else {
                 const errorResult = await response.json();
-                console.error('FAILED...', errorResult.error);
                 alert('Ошибка отправки: ' + errorResult.error);
                 submitButton.disabled = false;
                 submitButton.textContent = 'Отправить заявку';
             }
         } catch (error) {
-            console.error('NETWORK ERROR:', error);
             alert('Не удалось связаться с сервером. Убедитесь, что Python-скрипт запущен, и попробуйте снова.');
             submitButton.disabled = false;
             submitButton.textContent = 'Отправить заявку';
         }
     });
-
-    updateTotalProgress();
+    
+    // Инициализация при загрузке
+    goToStep(1);
 });
