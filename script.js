@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         formStepsContainer.style.transform = `translateX(${offset}%)`;
         updateProgressIndicators();
 
-        // Улучшение: Используем transitionend вместо setTimeout для точного снятия блокировки после анимации
-        formStepsContainer.addEventListener('transitionend', () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        setTimeout(() => {
             formContainer.classList.remove('is-transitioning');
-        }, { once: true });
+        }, isMobile ? 0 : 400);
     };
 
     // --- Валидация текущего шага ---
