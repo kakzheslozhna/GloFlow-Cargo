@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('multi-step-form');
-    // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ: Получаем главный контейнер для блокировки
     const formContainer = document.querySelector('.form-container'); 
     const formStepsContainer = document.querySelector('.form-steps-container');
     const steps = Array.from(document.querySelectorAll('.form-step'));
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Логика перехода между шагами ---
     const goToStep = (stepNumber) => {
-        // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ №1: Блокируем форму ПЕРЕД началом анимации
         formContainer.classList.add('is-transitioning');
 
         currentStep = stepNumber;
@@ -36,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         formStepsContainer.style.transform = `translateX(${offset}%)`;
         updateProgressIndicators();
 
-        // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ №2: Снимаем блокировку ПОСЛЕ завершения анимации (400ms)
-        setTimeout(() => {
+        // Улучшение: Используем transitionend вместо setTimeout для точного снятия блокировки после анимации
+        formStepsContainer.addEventListener('transitionend', () => {
             formContainer.classList.remove('is-transitioning');
-        }, 400); // Это значение должно совпадать с --transition-speed в CSS
+        }, { once: true });
     };
 
     // --- Валидация текущего шага ---
