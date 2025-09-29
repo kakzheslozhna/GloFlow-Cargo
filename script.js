@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('multi-step-form');
+    // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ: Получаем главный контейнер для блокировки
+    const formContainer = document.querySelector('.form-container'); 
     const formStepsContainer = document.querySelector('.form-steps-container');
     const steps = Array.from(document.querySelectorAll('.form-step'));
     const successScreen = document.querySelector('.form-success');
@@ -23,13 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Логика перехода между шагами ---
     const goToStep = (stepNumber) => {
+        // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ №1: Блокируем форму ПЕРЕД началом анимации
+        formContainer.classList.add('is-transitioning');
+
         currentStep = stepNumber;
         steps.forEach((step, index) => {
             step.classList.toggle('active', (index + 1) === currentStep);
         });
-        const offset = -(currentStep - 1) * 25; // 100% / 4 шага = 25% на шаг
+        const offset = -(currentStep - 1) * 25;
         formStepsContainer.style.transform = `translateX(${offset}%)`;
         updateProgressIndicators();
+
+        // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ №2: Снимаем блокировку ПОСЛЕ завершения анимации (400ms)
+        setTimeout(() => {
+            formContainer.classList.remove('is-transitioning');
+        }, 400); // Это значение должно совпадать с --transition-speed в CSS
     };
 
     // --- Валидация текущего шага ---
@@ -60,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return isValid;
     };
 
-    // --- ИЗМЕНЕНО: Прямые обработчики на кнопки навигации ---
+    // --- Прямые обработчики на кнопки навигации ---
     document.querySelectorAll('.next-step-btn').forEach(button => {
         button.addEventListener('click', () => {
             if (validateStep(currentStep)) {
@@ -89,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function setupCustomSelect(selectElement) {
-        // ... (код для кастомного селекта остается без изменений, он здесь для полноты)
         const customSelectContainer = document.createElement('div');
         customSelectContainer.className = 'custom-select-container';
         const customSelectTrigger = document.createElement('div');
@@ -129,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectElement.parentNode.appendChild(customSelectContainer);
     }
     
-    // --- Логика для поля даты (добавление класса при выборе) ---
+    // --- Логика для поля даты ---
     const dateInput = document.getElementById('delivery-date');
     if (dateInput) {
         dateInput.addEventListener('change', () => {
