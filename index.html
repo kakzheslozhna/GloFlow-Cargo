@@ -5,351 +5,385 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CARGUM — Доставка до маркетплейса</title>
     <meta name="description" content="Быстрая и надежная доставка ваших товаров до складов маркетплейсов. Ежедневные поставки, собственный склад в Москве, выгодные тарифы.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main-style.css">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='20' fill='url(%23logo-gradient-favicon)'/%3E%3Ctext x='14' y='27' font-family='Arial' font-size='22' font-weight='bold' fill='white'%3EB%3C/text%3E%3Cdefs%3E%3ClinearGradient id='logo-gradient-favicon' x1='0' y1='0' x2='40' y2='40' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF8C00'/%3E%3Cstop offset='1' stop-color='%23FF4500'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
 </head>
 <body>
 
-    <header class="header">
-        <div class="container header-container">
-            <a href="/" class="logo">
-            <span class="logo-text">CARGUM</span>
-            </a>
+<header class="header">
+    <div class="container header-container">
+        <a href="/" class="logo">
+            <img src="images/logo.svg" alt="CARGUM Logo" class="logo-image">
+        </a>
 
-            <nav class="nav">
+        <nav class="nav">
             <a href="#about" class="nav-link">О нас</a>
             <a href="#tariffs" class="nav-link">Тарифы</a>
             <a href="#contacts" class="nav-link">Контакты</a>
-            </nav>
+        </nav>
 
-            <div class="header-actions">
+        <div class="header-actions">
             <a href="tel:+79919253030" class="header-phone">+7 (991) 925-30-30</a>
 
             <div class="social-icons">
                 <a href="#" aria-label="Telegram">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="16" cy="16" r="16" fill="#29A9EB"/>
-                    <path
-                    d="M24.292 9.164c.18-.78-.62-1.418-1.32-1.08l-15.6 7.3a.9.9 0 0 0 .12 1.7l3.76 1.18 1.46 4.62a.9.9 0 0 0 1.54.32l2.16-2.24 3.8 2.8a.9.9 0 0 0 1.42-.5l2.66-13.1Z"
-                    fill="#fff" />
-                </svg>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#29A9EB" />
+                        <path d="M24.292 9.164c.18-.78-.62-1.418-1.32-1.08l-15.6 7.3a.9.9 0 0 0 .12 1.7l3.76 1.18 1.46 4.62a.9.9 0 0 0 1.54.32l2.16-2.24 3.8 2.8a.9.9 0 0 0 1.42-.5l2.66-13.1Z" fill="#fff" />
+                    </svg>
                 </a>
 
                 <a href="#" aria-label="WhatsApp">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="16" cy="16" r="16" fill="#25D366"/>
-                    <path
-                    d="M16 7a8.9 8.9 0 0 0-7.63 13.3L7 25l4.86-1.3A8.93 8.93 0 1 0 16 7Zm0 16a7.1 7.1 0 0 1-3.62-.98l-.26-.16-2.89.77.78-2.82-.18-.29A7.09 7.09 0 1 1 23.1 16 7.1 7.1 0 0 1 16 23Zm3.95-5.2c-.21-.1-1.25-.61-1.45-.68s-.34-.1-.49.1c-.14.2-.56.68-.69.82-.12.13-.25.15-.46.05a5.78 5.78 0 0 1-1.7-1.05 6.3 6.3 0 0 1-1.15-1.43c-.12-.2 0-.31.09-.4.1-.09.22-.25.33-.38.1-.12.14-.2.21-.33.07-.13.03-.25 0-.35s-.49-1.18-.68-1.63c-.18-.43-.36-.37-.49-.38H13c-.13 0-.35.05-.53.25s-.7.68-.7 1.67.72 1.93.83 2.07c.1.13 1.4 2.14 3.4 3 .48.2.85.32 1.15.41.48.15.93.13 1.28.08.39-.06 1.25-.51 1.43-1s.18-.91.13-1-.18-.14-.39-.24Z"
-                    fill="#fff" />
-                </svg>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#25D366" />
+                        <path d="M16 7a8.9 8.9 0 0 0-7.63 13.3L7 25l4.86-1.3A8.93 8.93 0 1 0 16 7Zm0 16a7.1 7.1 0 0 1-3.62-.98l-.26-.16-2.89.77.78-2.82-.18-.29A7.09 7.09 0 1 1 23.1 16 7.1 7.1 0 0 1 16 23Zm3.95-5.2c-.21-.1-1.25-.61-1.45-.68s-.34-.1-.49.1c-.14.2-.56.68-.69.82-.12.13-.25.15-.46.05a5.78 5.78 0 0 1-1.7-1.05 6.3 6.3 0 0 1-1.15-1.43c-.12-.2 0-.31.09-.4.1-.09.22-.25.33-.38.1-.12.14-.2.21-.33.07-.13.03-.25 0-.35s-.49-1.18-.68-1.63c-.18-.43-.36-.37-.49-.38H13c-.13 0-.35.05-.53.25s-.7.68-.7 1.67.72 1.93.83 2.07c.1.13 1.4 2.14 3.4 3 .48.2.85.32 1.15.41.48.15.93.13 1.28.08.39-.06 1.25-.51 1.43-1s.18-.91.13-1-.18-.14-.39-.24Z" fill="#fff" />
+                    </svg>
                 </a>
             </div>
 
             <a href="#" class="btn btn-dark-blue">Калькулятор</a>
             <a href="order.html" class="btn btn-primary">Оформить заявку</a>
-            </div>
+        </div>
 
-            <button class="burger-menu" id="burger-menu-btn" aria-label="Открыть меню">
+        <button class="burger-menu" id="burger-menu-btn" aria-label="Открыть меню">
             <span></span><span></span><span></span>
-            </button>
-        </div>
-    </header>
+        </button>
+    </div>
+</header>
 
-        <section class="hero">
+<main>
+
+    <section class="hero">
+        <!-- Этот блок создаст синий фон в верхней части -->
+        <div class="hero-blue-bg"></div>
+
+        <!-- Волна будет на границе синего и белого -->
+        <div class="hero-bottom-shape"></div>
+
+        <!-- Контейнер с основным контентом -->
         <div class="container hero-container">
+            <div class="hero-warehouse-badge">
+                Собственный склад<br>в Москве внутри МКАД
+            </div>
             <div class="hero-text">
-            <h1>Добро пожаловать в CARGUM!</h1>
-            <p class="hero-subtitle">Быстрая доставка на маркетплейсы в срок</p>
-            <div class="hero-badge">Скидка 15%<br>на первый заказ!</div>
-            </div>
-            <div class="hero-banner">
-            Собственный склад в Москве внутри МКАД
-            </div>
-        </div>
-        </section>
-
-
-        <section id="about" class="features">
-            <div class="container">
-                <h2 class="section-title">ПОСТАВКА НА WB В 3 КЛИКА!</h2>
-                <p class="features-stat">100 000+ товаров отгружено</p>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-number">1</div>
-                        <h3>Заявка за минуту:</h3>
-                        <p>Оставьте заявку на сайте или по телефону. Мы оперативно рассчитаем стоимость и выставим счет. Недорогая логистика.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-number">2</div>
-                        <h3>Передача груза на склад:</h3>
-                        <p>Привезите товар на наш склад самостоятельно или мы заберем его сами. Бесплатное хранение до 7 дней.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-number">3</div>
-                        <h3>Успех! Товар в продаже:</h3>
-                        <p>Как только товар окажется на складе маркетплейса, вы получите уведомление об успешной приемке.</p>
-                    </div>
-                </div>
-                <div class="features-actions">
-                    <a href="order.html" class="btn btn-primary">Сделать заявку</a>
-                    <a href="#contacts" class="btn btn-secondary">Связаться с нами</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="warehouses">
-            <div class="container">
-                <h2 class="section-title">Ежедневные отгрузки на ключевые склады Wildberries</h2>
-                <div class="warehouses-list">
-                    <span>Коледино</span>
-                    <span>Санкт-Петербург</span>
-                    <span>Алексин</span>
-                    <span>Краснодар</span>
-                    <span>Электросталь</span>
-                    <span>Рязань</span>
-                    <span>Казань</span>
-                    <span>Котовск</span>
-                </div>
-                <div class="warehouses-image-placeholder"></div>
-            </div>
-        </section>
-
-        <section class="stats">
-            <div class="container">
-                <h2 class="section-title">Более 2000+ ПАЛЛЕТ ДОСТАВЛЕНО ЗА 2023 ГОД</h2>
-                <a href="#" class="btn btn-primary">Рассчитать стоимость</a>
-            </div>
-        </section>
-
-        <section class="services">
-            <div class="container">
-                <h2 class="section-title">Выгодные цены когда точно знаете сколько</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <h4>В коробах</h4>
-                        <p class="price">от 300 ₽</p>
-                        <p class="description">В стоимость входит приемка на нашем складе и транспортировка до маркетплейса.</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>В паллетах</h4>
-                        <p class="price">от 2000 ₽</p>
-                        <p class="description">Вес паллеты до 500 кг, высота до 180 см. Включены приемка и транспортировка до склада маркетплейса.</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>Паллетирование</h4>
-                        <p class="price">790 ₽</p>
-                        <p class="description">Услуга включает стоимость нашего паллета и работы по формированию грузового места для безопасной перевозки.</p>
-                    </div>
-                </div>
-                <div class="cta-banner">
-                    <h3>Персональные тарифы для крупного бизнеса</h3>
-                    <p>Запросите условия. Сокращаем затраты на логистику, повышаем эффективность.</p>
-                    <a href="#" class="btn btn-light">Запросить условия</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="tariffs" class="tariffs">
-            <div class="container">
-                <h2 class="section-title">Тарифы и график отгрузок</h2>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Куда</th>
-                                <th>Цена за короб</th>
-                                <th>Цена за паллет</th>
-                                <th>Срок</th>
-                                <th>Отправка</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Казань</td><td>700</td><td>4800</td><td>1 день</td><td>пн, вт, ср, чт, пт</td></tr>
-                            <tr><td>Санкт-Петербург</td><td>500</td><td>4000</td><td>1 день</td><td>вт, чт</td></tr>
-                            <tr><td>Алексин</td><td>400</td><td>3200</td><td>день в день</td><td>пн, ср, пт</td></tr>
-                            <tr><td>Москва (Коледино/Подольск)</td><td>300</td><td>2000</td><td>день в день</td><td>пн, ср, пт</td></tr>
-                            <tr><td>Краснодар</td><td>770</td><td>6200</td><td>2 дня</td><td>пн, ср, чт, пт</td></tr>
-                            <tr><td>Котовск</td><td>500</td><td>4000</td><td>1 день</td><td>вт, чт</td></tr>
-                            <tr><td>Электросталь</td><td>350</td><td>2500</td><td>день в день</td><td>пн, ср, пт</td></tr>
-                            <tr><td>Рязань</td><td>400</td><td>3200</td><td>день в день</td><td>пн, ср, пт</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tariffs-notes">
-                    <p>*короб до 0.1 м³</p>
-                    <p>**паллет до 500 кг и высотой до 180 см</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="delivery-stats">
-            <div class="container">
-                <div class="stats-badge">99.8% доставлено в срок</div>
-                <div class="delivery-image-placeholder"></div>
-                <h2>CARGUM, Мы везем, вы - отдыхаете!</h2>
-                <p>Забудьте о упаковке, потере времени, нервов и денег! Сосредоточьтесь на развитии бизнеса, а логистику доверьте нам.</p>
-                <p>Наша команда берет на себя все.</p>
-                <a href="#contacts" class="btn btn-primary">Связаться с нами</a>
-            </div>
-        </section>
-
-        <section class="benefits">
-            <div class="container">
-                <h2 class="section-title">Позаботимся о логистике, чтобы вы могли сосредоточиться на продажах</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <h4>Доставка каждый день</h4>
-                        <p>Забудьте о простоях! Обеспечиваем ежедневные отправки, чтобы вы всегда были на шаг впереди.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>Заявка сегодня - груз завтра</h4>
-                        <p>Никаких переносов и задержек — только четкое соблюдение сроков, чтобы ваш товар оперативно попал на склад.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>Собственный склад в Москве</h4>
-                        <p>Удобное расположение и бесплатное хранение до 1 недели с услугами паллетирования.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>Персональный менеджер</h4>
-                        <p>Опытный менеджер возьмет на себя решение всех вопросов, поможет с заявкой и будет координировать доставку.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>Гарантия на каждом этапе</h4>
-                        <p>Полная прозрачность и безопасность. Вы всегда в курсе, где находится ваш товар, от забора до прибытия.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>Проверка и помощь</h4>
-                        <p>Неправильный штрихкод или упаковка? Мы внесем корректировки и без проблем сдадим груз на маркетплейс.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="reviews">
-            <div class="container">
-                <h2 class="section-title">Отзывы, которые громче слов!</h2>
-                <div class="reviews-grid">
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Хорошее обслуживание, внимательный персонал. Рекомендую всем поставщикам!</p>
-                        <p class="review-date">30.10.2021</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Розница ноябрь 2021, все прошло гладко, доставка в срок.</p>
-                        <p class="review-date">30.10.2021</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Хорошее обслуживание, внимательный персонал. Рекомендую всем поставщикам!</p>
-                        <p class="review-date">30.10.2021</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Хорошее обслуживание, внимательный персонал. Рекомендую всем поставщикам!</p>
-                        <p class="review-date">30.10.2021</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contacts" class="map">
-            <div class="container">
-                <h2 class="section-title">НАШ СКЛАД В МОСКВЕ</h2>
-                <div class="map-container">
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A65d6bae1b24b7d8e9f96400cfaf9a682d3c29da3a14f1ed97d3a1e0e96832f24&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact-form">
-            <div class="container">
-                <h2 class="section-title">Оставьте свои контактные данные, мы свяжемся с вами в течение 30 минут</h2>
-                <form>
-                    <input type="text" placeholder="Имя">
-                    <input type="email" placeholder="E-mail">
-                    <input type="tel" placeholder="+7">
-                    <button type="submit" class="btn btn-primary">Заказать обратный звонок</button>
-                </form>
-            </div>
-        </section>
-
-        <section id="faq" class="faq">
-            <div class="container">
-                <h2 class="section-title">Здесь ответы на популярные вопросы</h2>
-                <div class="faq-accordion">
-                    <div class="faq-item">
-                        <button class="faq-question">С какими маркетплейсами работаете?</button>
-                        <div class="faq-answer">
-                            <p>На данный момент мы специализируемся на доставке заказов на склады Wildberries.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">Как оформить доставку?</button>
-                        <div class="faq-answer">
-                            <p>Создайте заявку на сайте, свяжитесь с персональным менеджером или позвоните по телефону. Затем упакуйте и промаркируйте груз по правилам маркетплейса и привезите его к нам на склад или закажите забор с вашего адреса.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">Как быстро вы доставите товар до маркетплейса?</button>
-                        <div class="faq-answer">
-                            <p>Наши машины уезжают регулярно, согласно графику отгрузок. Сроки доставки зависят от направления и составляют от "день в день" до 2 дней. Забронируйте место для вашего груза уже сегодня!</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">Как упаковать груз самостоятельно?</button>
-                        <div class="faq-answer">
-                            <p>Упаковка должна быть закрытой, защищать груз от повреждений и позволять нанести маркировку. Хрупкие грузы должны быть в прочных коробах с амортизирующим материалом. Паллеты должны быть надежно скреплены скотчем или термоусадочной пленкой. На упаковке не должно быть следов повреждений.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">Какова стоимость и сроки перевозки?</button>
-                        <div class="faq-answer">
-                            <p>Стоимость и сроки доставки зависят от направления и характеристик груза. Вы можете ознакомиться с базовыми тарифами в <a href="#tariffs">соответствующем разделе</a> на нашем сайте или рассчитать точную стоимость, оставив заявку.</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="#contacts" class="btn btn-primary faq-btn">Связаться с нами</a>
-            </div>
-        </section>
-    </main>
-    
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <a href="/" class="logo">
-                    <span class="logo-text">CARGUM</span>
+                <h1>ДОБРО ПОЖАЛОВАТЬ<br>В <span class="logo-accent">CARGUM!</span></h1>
+                <p class="hero-subtitle">Здесь быстрая доставка<br>на маркетплейсы в срок</p>
+                <a href="order.html" class="hero-discount-badge">
+                    Скидка 10%<br>на первый заказ!
                 </a>
-                <p class="footer-copy">&copy; 2025 CARGUM. Все права защищены.</p>
             </div>
-            <div class="footer-col">
-                <h4>Мобильный</h4>
-                <a href="#tariffs">Тарифы</a>
-                <a href="#">Акции</a>
-                <a href="#">Бонус-очки</a>
+            <div class="hero-image-forklift"></div>
+        </div>
+    </section>
+    
+    <section id="about" class="delivery-steps">
+        <div class="container">
+            <h2 class="section-title">ПОСТАВКА <br> В 3 ШАГА</h2>
+            <div class="delivery-steps-wrapper">
+                <div class="delivery-steps-left">
+                    <div class="shipped-badge">
+                        благодаря нам уже <br>
+                        <strong>1 000 000+</strong><br> товаров
+                        отгружены
+                    </div>
+                    <div class="delivery-steps-image"></div>
+                </div>
+
+                <!-- Правая колонка с шагами -->
+                <div class="delivery-steps-right">
+                    <div class="steps-list">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Заявка за минуту:</h3>
+                                <p>оставьте заявку на сайте или по телефону. Мы оперативно рассчитаем стоимость и выставим счет. Никаких задержек!</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Передача груза:</h3>
+                                <p>привезите товар на наш склад сами или доверьте это нам - мы заберем его сами. Бесплатное хранение в течение 1 недели на нашем складе</p>
+                                <span class="step-note">Принимаем партии любого объема</span>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Успех! Товар в продаже:</h3>
+                                <p>как только ваш товар окажется на складе маркетплейса, вы получите уведомление. Ваши клиенты уже ждут!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steps-buttons">
+                        <a href="order.html" class="btn btn-primary">СДЕЛАТЬ ЗАКАЗ</a>
+                        <a href="#contacts" class="btn btn-secondary">СВЯЗАТЬСЯ С НАМИ</a>
+                    </div>
+                </div>
+
             </div>
-            <div class="footer-col">
-                <h4>Контакты</h4>
-                <a href="tel:+79919253030">+7 (991) 925-30-30</a>
-                <a href="mailto:hello@cargum.ru">hello@cargum.ru</a>
-                <p>г. Москва, ул. Рябиновая 55 с6/1</p>
-                <p>Ежедневно с 9:00 до 20:00</p>
+        </div>
+    </section>
+
+    <section class="warehouses">
+        <div class="container">
+            <h2 class="section-title">Ежедневные отгрузки на ключевые склады Wildberries</h2>
+            <div class="warehouses-list">
+                <span>Коледино</span>
+                <span>Санкт-Петербург</span>
+                <span>Алексин</span>
+                <span>Краснодар</span>
+                <span>Электросталь</span>
+                <span>Рязань</span>
+                <span>Казань</span>
+                <span>Котовск</span>
             </div>
-            <div class="footer-col">
-                <h4>Социальные сети</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Telegram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.889 14.632l-1.639 5.833c-.237.838.644 1.437 1.343.998l2.766-1.737 4.131 3.033c.523.383 1.223.013 1.33-.632l2.96-16.126c.153-.827-.546-1.526-1.373-1.373L2.943 9.124c-.827.153-.827 1.223 0 1.373l4.333 1.083 9.539-5.963c.42-.262.833.237.5.5l-7.44 6.515z"/></svg></a>
-                    <a href="#" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.01,2.007C6.486,2.007,2,6.492,2,12.017c0,1.742,0.446,3.483,1.318,5.019l-1.328,4.851l4.965-1.309 c1.488,0.796,3.159,1.213,4.845,1.213h0.01c5.524,0,10.007-4.485,10.007-10.007C22.017,6.492,17.534,2.007,12.01,2.007z M17.342,15.545c-0.217-0.109-1.28-0.632-1.484-0.703c-0.203-0.071-0.349-0.109-0.495,0.109c-0.146,0.217-0.56,0.703-0.686,0.849 c-0.126,0.146-0.252,0.165-0.47,0.056c-0.217-0.109-0.92-0.34-1.753-1.082c-0.649-0.579-1.086-1.289-1.212-1.506 c-0.126-0.217-0.014-0.33,0.095-0.439c0.1-0.1,0.217-0.253,0.326-0.38c0.109-0.126,0.146-0.217,0.217-0.363 c0.071-0.146,0.035-0.272-0.018-0.38c-0.053-0.109-0.495-1.191-0.678-1.632c-0.174-0.423-0.357-0.364-0.495-0.37 c-0.129-0.006-0.275-0.006-0.421-0.006s-0.384,0.056-0.587,0.272c-0.203,0.217-0.778,0.76-0.778,1.854 c0,1.094,0.796,2.162,0.905,2.308c0.109,0.146,1.559,2.449,3.78,3.344c0.53,0.217,0.94,0.349,1.264,0.447 c0.59,0.174,1.124,0.149,1.545,0.09c0.457-0.065,1.28-0.521,1.464-1.018c0.183-0.497,0.183-0.924,0.126-1.018 C17.708,15.69,17.559,15.653,17.342,15.545z"/></svg></a>
+            <div class="warehouses-image-placeholder"></div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Более 2000+ ПАЛЛЕТ ДОСТАВЛЕНО ЗА 2023 ГОД</h2>
+            <a href="#" class="btn btn-primary">Рассчитать стоимость</a>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Выгодные цены когда точно знаете сколько</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>В коробах</h4>
+                    <p class="price">от 300 ₽</p>
+                    <p class="description">В стоимость входит приемка на нашем складе и транспортировка до маркетплейса.</p>
+                </div>
+                <div class="service-card">
+                    <h4>В паллетах</h4>
+                    <p class="price">от 2000 ₽</p>
+                    <p class="description">Вес паллеты до 500 кг, высота до 180 см. Включены приемка и транспортировка до склада маркетплейса.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Паллетирование</h4>
+                    <p class="price">790 ₽</p>
+                    <p class="description">Услуга включает стоимость нашего паллета и работы по формированию грузового места для безопасной перевозки.</p>
+                </div>
+            </div>
+            <div class="cta-banner">
+                <h3>Персональные тарифы для крупного бизнеса</h3>
+                <p>Запросите условия. Сокращаем затраты на логистику, повышаем эффективность.</p>
+                <a href="#" class="btn btn-light">Запросить условия</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="tariffs" class="tariffs">
+        <div class="container">
+            <h2 class="section-title">Тарифы и график отгрузок</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Куда</th>
+                            <th>Цена за короб</th>
+                            <th>Цена за паллет</th>
+                            <th>Срок</th>
+                            <th>Отправка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Казань</td><td>700</td><td>4800</td><td>1 день</td><td>пн, вт, ср, чт, пт</td></tr>
+                        <tr><td>Санкт-Петербург</td><td>500</td><td>4000</td><td>1 день</td><td>вт, чт</td></tr>
+                        <tr><td>Алексин</td><td>400</td><td>3200</td><td>день в день</td><td>пн, ср, пт</td></tr>
+                        <tr><td>Москва (Коледино/Подольск)</td><td>300</td><td>2000</td><td>день в день</td><td>пн, ср, пт</td></tr>
+                        <tr><td>Краснодар</td><td>770</td><td>6200</td><td>2 дня</td><td>пн, ср, чт, пт</td></tr>
+                        <tr><td>Котовск</td><td>500</td><td>4000</td><td>1 день</td><td>вт, чт</td></tr>
+                        <tr><td>Электросталь</td><td>350</td><td>2500</td><td>день в день</td><td>пн, ср, пт</td></tr>
+                        <tr><td>Рязань</td><td>400</td><td>3200</td><td>день в день</td><td>пн, ср, пт</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tariffs-notes">
+                <p>*короб до 0.1 м³</p>
+                <p>**паллет до 500 кг и высотой до 180 см</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="delivery-stats">
+        <div class="container">
+            <div class="stats-badge">99.8% доставлено в срок</div>
+            <div class="delivery-image-placeholder"></div>
+            <h2>CARGUM, Мы везем, вы - отдыхаете!</h2>
+            <p>Забудьте о упаковке, потере времени, нервов и денег! Сосредоточьтесь на развитии бизнеса, а логистику доверьте нам.</p>
+            <p>Наша команда берет на себя все.</p>
+            <a href="#contacts" class="btn btn-primary">Связаться с нами</a>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Позаботимся о логистике, чтобы вы могли сосредоточиться на продажах</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4>Доставка каждый день</h4>
+                    <p>Забудьте о простоях! Обеспечиваем ежедневные отправки, чтобы вы всегда были на шаг впереди.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Заявка сегодня - груз завтра</h4>
+                    <p>Никаких переносов и задержек — только четкое соблюдение сроков, чтобы ваш товар оперативно попал на склад.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Собственный склад в Москве</h4>
+                    <p>Удобное расположение и бесплатное хранение до 1 недели с услугами паллетирования.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Персональный менеджер</h4>
+                    <p>Опытный менеджер возьмет на себя решение всех вопросов, поможет с заявкой и будет координировать доставку.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Гарантия на каждом этапе</h4>
+                    <p>Полная прозрачность и безопасность. Вы всегда в курсе, где находится ваш товар, от забора до прибытия.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Проверка и помощь</h4>
+                    <p>Неправильный штрихкод или упаковка? Мы внесем корректировки и без проблем сдадим груз на маркетплейс.</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script src="main-script.js"></script>
+    <section class="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы, которые громче слов!</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>Хорошее обслуживание, внимательный персонал. Рекомендую всем поставщикам!</p>
+                    <p class="review-date">30.10.2021</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>Розница ноябрь 2021, все прошло гладко, доставка в срок.</p>
+                    <p class="review-date">30.10.2021</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>Хорошее обслуживание, внимательный персонал. Рекомендую всем поставщикам!</p>
+                    <p class="review-date">30.10.2021</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>Хорошее обслуживание, внимательный персонал. Рекомендую всем поставщикам!</p>
+                    <p class="review-date">30.10.2021</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts" class="map">
+        <div class="container">
+            <h2 class="section-title">НАШ СКЛАД В МОСКВЕ</h2>
+            <div class="map-container">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A65d6bae1b24b7d8e9f96400cfaf9a682d3c29da3a14f1ed97d3a1e0e96832f24&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form">
+        <div class="container">
+            <h2 class="section-title">Оставьте свои контактные данные, мы свяжемся с вами в течение 30 минут</h2>
+            <form>
+                <input type="text" placeholder="Имя">
+                <input type="email" placeholder="E-mail">
+                <input type="tel" placeholder="+7">
+                <button type="submit" class="btn btn-primary">Заказать обратный звонок</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Здесь ответы на популярные вопросы</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">С какими маркетплейсами работаете?</button>
+                    <div class="faq-answer">
+                        <p>На данный момент мы специализируемся на доставке заказов на склады Wildberries.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Как оформить доставку?</button>
+                    <div class="faq-answer">
+                        <p>Создайте заявку на сайте, свяжитесь с персональным менеджером или позвоните по телефону. Затем упакуйте и промаркируйте груз по правилам маркетплейса и привезите его к нам на склад или закажите забор с вашего адреса.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Как быстро вы доставите товар до маркетплейса?</button>
+                    <div class="faq-answer">
+                        <p>Наши машины уезжают регулярно, согласно графику отгрузок. Сроки доставки зависят от направления и составляют от "день в день" до 2 дней. Забронируйте место для вашего груза уже сегодня!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Как упаковать груз самостоятельно?</button>
+                    <div class="faq-answer">
+                        <p>Упаковка должна быть закрытой, защищать груз от повреждений и позволять нанести маркировку. Хрупкие грузы должны быть в прочных коробах с амортизирующим материалом. Паллеты должны быть надежно скреплены скотчем или термоусадочной пленкой. На упаковке не должно быть следов повреждений.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Какова стоимость и сроки перевозки?</button>
+                    <div class="faq-answer">
+                        <p>Стоимость и сроки доставки зависят от направления и характеристик груза. Вы можете ознакомиться с базовыми тарифами в <a href="#tariffs">соответствующем разделе</a> на нашем сайте или рассчитать точную стоимость, оставив заявку.</p>
+                    </div>
+                </div>
+            </div>
+            <a href="#contacts" class="btn btn-primary faq-btn">Связаться с нами</a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <a href="/" class="logo">
+                <span class="logo-text">CARGUM</span>
+            </a>
+            <p class="footer-copy">&copy; 2025 CARGUM. Все права защищены.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Мобильный</h4>
+            <a href="#tariffs">Тарифы</a>
+            <a href="#">Акции</a>
+            <a href="#">Бонус-очки</a>
+        </div>
+        <div class="footer-col">
+            <h4>Контакты</h4>
+            <a href="tel:+79919253030">+7 (991) 925-30-30</a>
+            <a href="mailto:hello@cargum.ru">hello@cargum.ru</a>
+            <p>г. Москва, ул. Рябиновая 55 с6/1</p>
+            <p>Ежедневно с 9:00 до 20:00</p>
+        </div>
+        <div class="footer-col">
+            <h4>Социальные сети</h4>
+            <div class="social-links">
+                <a href="#" aria-label="Telegram">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#29A9EB" />
+                        <path d="M24.292 9.164c.18-.78-.62-1.418-1.32-1.08l-15.6 7.3a.9.9 0 0 0 .12 1.7l3.76 1.18 1.46 4.62a.9.9 0 0 0 1.54.32l2.16-2.24 3.8 2.8a.9.9 0 0 0 1.42-.5l2.66-13.1Z" fill="#fff" />
+                    </svg>
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#25D366" />
+                        <path d="M16 7a8.9 8.9 0 0 0-7.63 13.3L7 25l4.86-1.3A8.93 8.93 0 1 0 16 7Zm0 16a7.1 7.1 0 0 1-3.62-.98l-.26-.16-2.89.77.78-2.82-.18-.29A7.09 7.09 0 1 1 23.1 16 7.1 7.1 0 0 1 16 23Zm3.95-5.2c-.21-.1-1.25-.61-1.45-.68s-.34-.1-.49.1c-.14.2-.56.68-.69.82-.12.13-.25.15-.46.05a5.78 5.78 0 0 1-1.7-1.05 6.3 6.3 0 0 1-1.15-1.43c-.12-.2 0-.31.09-.4.1-.09.22-.25.33-.38.1-.12.14-.2.21-.33.07-.13.03-.25 0-.35s-.49-1.18-.68-1.63c-.18-.43-.36-.37-.49-.38H13c-.13 0-.35.05-.53.25s-.7.68-.7 1.67.72 1.93.83 2.07c.1.13 1.4 2.14 3.4 3 .48.2.85.32 1.15.41.48.15.93.13 1.28.08.39-.06 1.25-.51 1.43-1s.18-.91.13-1-.18-.14-.39-.24Z" fill="#fff" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="main-script.js"></script>
 </body>
 </html>
