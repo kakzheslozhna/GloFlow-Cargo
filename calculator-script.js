@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- БАЗЫ ДАННЫХ С ЦЕНАМИ ---
+    // Обновлены цены для Краснодара
     const prices = {
-        'Краснодар': { 'Короб': 770, 'Паллета': 6200, 'м³': 7700 },
+        'Краснодар': { 'Короб': 850, 'Паллета': 6800, 'м³': 8500 }, 
         'Санкт-Петербург': { 'Короб': 550, 'Паллета': 4400, 'м³': 5500 },
         'Казань': { 'Короб': 600, 'Паллета': 4800, 'м³': 6000 },
         'Екатеринбург': { 'Короб': 1100, 'Паллета': 9000, 'м³': 10000 },
@@ -14,11 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'Коледино, Подольск, Подольск 3, Подольск 4': { 'Короб': 300, 'Паллета': 2000, 'м³': 3000 },
         'Электросталь': { 'Короб': 350, 'Паллета': 2500, 'м³': 3500 },
     };
+    // Цены указаны за 1 единицу (за 1 паллету, за 1 короб)
     const extraServicePrices = {
-        palletizing: 790,
-        palletPickup: 1000,
-        boxPickupSmall: 390, // до 5 коробов включительно
-        boxPickupLarge: 300, // от 6 коробов
+        palletizing: 790,    // за 1 паллету
+        palletPickup: 1000,  // за 1 паллету
+        boxPickupSmall: 390, // за 1 короб, если их <= 5
+        boxPickupLarge: 300, // за 1 короб, если их > 5
     };
 
     // --- СОСТОЯНИЕ КАЛЬКУЛЯТОРА ---
@@ -56,19 +58,20 @@ document.addEventListener('DOMContentLoaded', () => {
         stepIndicator.textContent = `Шаг ${currentStep} из ${totalSteps}`;
         prevBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
         nextBtn.textContent = currentStep === totalSteps ? 'Рассчитать' : 'Далее →';
-
-        // Обновление заголовков с анимацией
+        
         const titles = {
             1: 'Куда доставить ваш груз Wildberries?',
             2: 'Выберите вариант поставки',
             3: 'Укажите количество и доп. услуги'
         };
         
-        mainTitle.style.opacity = '0';
-        setTimeout(() => {
-            mainTitle.textContent = titles[currentStep];
-            mainTitle.style.opacity = '1';
-        }, 150);
+        if (mainTitle.textContent !== titles[currentStep]) {
+            mainTitle.style.opacity = '0';
+            setTimeout(() => {
+                mainTitle.textContent = titles[currentStep];
+                mainTitle.style.opacity = '1';
+            }, 150);
+        }
 
         if (currentStep === 3) {
             document.querySelectorAll('.delivery-option-card').forEach(card => {
@@ -79,9 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         validateStep();
-        
-        // Плавный скролл к началу при смене шага
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function calculateTotal() {
@@ -93,13 +93,22 @@ document.addEventListener('DOMContentLoaded', () => {
             baseCost = prices[destination][deliveryType] * quantity;
         }
 
-        if (deliveryType === 'Паллета') {
-            if (extras.palletizing) extrasCost += extraServicePrices.palletizing;
-            if (extras.pickup) extrasCost += extraServicePrices.palletPickup;
-        } 
-        else if (deliveryType === 'Короб') {
-            if (extras.pickup) {
-                extrasCost += quantity <= 5 ? extraServicePrices.boxPickupSmall : extraServicePrices.boxPickupLarge;
+        // --- ИСПРАВЛЕННАЯ ЛОГИКА РАСЧЕТА ДОП. УСЛУГ ---
+        if (quantity > 0) { // Считаем доп. услуги только если есть количество
+            if (deliveryType === 'Паллета') {
+                if (extras.palletizing) {
+                    extrasCost += extraServicePrices.palletizing * quantity; // Умножаем на кол-во паллет
+                }
+                if (extras.pickup) {
+                    extrasCost += extraServicePrices.palletPickup * quantity; // Умножаем на кол-во паллет
+                }
+            } 
+            else if (deliveryType === 'Короб') {
+                if (extras.pickup) {
+                    // Выбираем цену за короб в зависимости от общего кол-ва
+                    const pricePerBox = quantity <= 5 ? extraServicePrices.boxPickupSmall : extraServicePrices.boxPickupLarge;
+                    extrasCost += pricePerBox * quantity; // Умножаем на кол-во коробов
+                }
             }
         }
 
