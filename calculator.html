@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Калькулятор стоимости — CARGUM</title>
+    <meta name="description" content="Рассчитайте стоимость доставки вашего груза до складов Wildberries с помощью нашего удобного калькулятора.">
+    <link rel="stylesheet" href="main-style.css">
+    <link rel="stylesheet" href="calculator-style.css"> 
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-container">
+        <a href="/" class="logo">
+            <img src="images/logo.svg" alt="CARGUM Logo" class="logo-image">
+        </a>
+        <nav class="nav">
+            <a href="index.html#about" class="nav-link">О нас</a>
+            <a href="index.html#tariffs" class="nav-link">Тарифы</a>
+            <a href="index.html#contacts" class="nav-link">Контакты</a>
+        </nav>
+        <div class="header-actions">
+            <a href="tel:+79919253030" class="header-phone">+7 (991) 925-30-30</a>
+            <div class="social-icons">
+                <a href="#" aria-label="Telegram"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#29A9EB" /><path d="M24.292 9.164c.18-.78-.62-1.418-1.32-1.08l-15.6 7.3a.9.9 0 0 0 .12 1.7l3.76 1.18 1.46 4.62a.9.9 0 0 0 1.54.32l2.16-2.24 3.8 2.8a.9.9 0 0 0 1.42-.5l2.66-13.1Z" fill="#fff" /></svg></a>
+                <a href="#" aria-label="WhatsApp"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#25D366" /><path d="M16 7a8.9 8.9 0 0 0-7.63 13.3L7 25l4.86-1.3A8.93 8.93 0 1 0 16 7Zm0 16a7.1 7.1 0 0 1-3.62-.98l-.26-.16-2.89.77.78-2.82-.18-.29A7.09 7.09 0 1 1 23.1 16 7.1 7.1 0 0 1 16 23Zm3.95-5.2c-.21-.1-1.25-.61-1.45-.68s-.34-.1-.49.1c-.14.2-.56.68-.69.82-.12.13-.25.15-.46.05a5.78 5.78 0 0 1-1.7-1.05 6.3 6.3 0 0 1-1.15-1.43c-.12-.2 0-.31.09-.4.1-.09.22-.25.33-.38.1-.12.14-.2.21-.33.07-.13.03-.25 0-.35s-.49-1.18-.68-1.63c-.18-.43-.36-.37-.49-.38H13c-.13 0-.35.05-.53.25s-.7.68-.7 1.67.72 1.93.83 2.07c.1.13 1.4 2.14 3.4 3 .48.2.85.32 1.15.41.48.15.93.13 1.28.08.39-.06 1.25-.51 1.43-1s.18-.91.13-1-.18-.14-.39-.24Z" fill="#fff" /></svg></a>
+            </div>
+            <a href="calculator.html" class="btn btn-dark-blue">Калькулятор</a>
+            <a href="order.html" class="btn btn-primary">Оформить заявку</a>
+        </div>
+        <button class="burger-menu" id="burger-menu-btn" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<main class="calculator-page">
+    <div class="container">
+        <div class="calculator-header">
+            <p id="calculator-step-indicator">Шаг 1 из 3</p>
+            <h1 id="calculator-main-title">Куда доставить ваш груз Wildberries?</h1>
+        </div>
+
+        <!-- === ШАГ 1: ВЫБОР НАПРАВЛЕНИЯ === -->
+        <div id="step-1" class="calculator-step active">
+            <div class="selection-grid">
+                <div class="selection-item"><input type="radio" id="dest1" name="destination" value="Краснодар"><label for="dest1">Краснодар</label></div>
+                <div class="selection-item"><input type="radio" id="dest2" name="destination" value="Санкт-Петербург"><label for="dest2">Санкт-Петербург</label></div>
+                <div class="selection-item"><input type="radio" id="dest3" name="destination" value="Казань"><label for="dest3">Казань</label></div>
+                <div class="selection-item"><input type="radio" id="dest4" name="destination" value="Екатеринбург"><label for="dest4">Екатеринбург</label></div>
+                <div class="selection-item"><input type="radio" id="dest5" name="destination" value="Тула(Алексин)"><label for="dest5">Тула(Алексин)</label></div>
+                <div class="selection-item"><input type="radio" id="dest6" name="destination" value="Рязань"><label for="dest6">Рязань</label></div>
+                <div class="selection-item"><input type="radio" id="dest7" name="destination" value="Котовск"><label for="dest7">Котовск</label></div>
+                <div class="selection-item"><input type="radio" id="dest8" name="destination" value="Новосемейкино"><label for="dest8">Новосемейкино</label></div>
+                <div class="selection-item"><input type="radio" id="dest9" name="destination" value="Сарапул"><label for="dest9">Сарапул</label></div>
+                <div class="selection-item"><input type="radio" id="dest10" name="destination" value="Коледино, Подольск, Подольск 3, Подольск 4"><label for="dest10">Коледино, Подольск, Подольск 3, Подольск 4</label></div>
+                <div class="selection-item"><input type="radio" id="dest11" name="destination" value="Электросталь"><label for="dest11">Электросталь</label></div>
+            </div>
+        </div>
+
+        <!-- === ШАГ 2: ВЫБОР ТИПА ПОСТАВКИ === -->
+        <div id="step-2" class="calculator-step">
+            <div class="selection-grid">
+                <div class="selection-item"><input type="radio" id="type1" name="deliveryType" value="Короб"><label for="type1">Короб</label></div>
+                <div class="selection-item"><input type="radio" id="type2" name="deliveryType" value="Паллета"><label for="type2">Паллета</label></div>
+                <div class="selection-item"><input type="radio" id="type3" name="deliveryType" value="м³"><label for="type3">м<sup>3</sup></label></div>
+            </div>
+        </div>
+        
+        <!-- === ШАГ 3: ВВОД КОЛИЧЕСТВА И РАСЧЕТ === -->
+        <div id="step-3" class="calculator-step">
+            <div class="calculator-layout-grid">
+                <div class="calculator-options">
+                    
+                    <div class="delivery-option-card" data-type="Короб">
+                        <h4>В коробах</h4>
+                        <div class="input-wrapper">
+                            <label for="box-quantity">Количество, шт</label>
+                            <input type="number" id="box-quantity" min="1" placeholder="0" class="quantity-input">
+                        </div>
+                        <div class="extra-services">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="box-pickup-service">
+                                <span class="checkmark"></span>
+                                <span>Нужен забор с моего склада</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="delivery-option-card" data-type="Паллета">
+                        <h4>На паллетах</h4>
+                        <div class="input-wrapper">
+                            <label for="pallet-quantity">Количество, шт</label>
+                            <input type="number" id="pallet-quantity" min="1" placeholder="0" class="quantity-input">
+                        </div>
+                        <div class="extra-services">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="palletizing-service">
+                                <span class="checkmark"></span>
+                                <span>Требуется паллетирование</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="pallet-pickup-service">
+                                <span class="checkmark"></span>
+                                <span>Нужен забор с моего склада</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="delivery-option-card" data-type="м³">
+                        <h4>Объём, м<sup>3</sup></h4>
+                        <div class="input-wrapper">
+                            <label for="volume-quantity">Объем, м<sup>3</sup></label>
+                            <input type="number" id="volume-quantity" min="0.1" step="0.1" placeholder="0.0" class="quantity-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculation-summary">
+                    <h4>Ваш расчет:</h4>
+                    <div class="summary-item"><span>Направление:</span><strong id="summary-destination">--</strong></div>
+                    <div class="summary-item"><span>Тип поставки:</span><strong id="summary-type">--</strong></div>
+                    <div class="summary-item"><span>Количество:</span><strong id="summary-quantity">--</strong></div>
+                    <div class="summary-item summary-extras" style="display: none;">
+                        <span>Доп. услуги:</span>
+                        <strong id="summary-extras-price">0 ₽</strong>
+                    </div>
+                    <div class="summary-total"><span>Итого:</span><strong id="summary-total-price">0 ₽</strong></div>
+                    <p class="summary-note">*Расчет является предварительным.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- === ФУТЕР КАЛЬКУЛЯТОРА С НАВИГАЦИЕЙ === -->
+        <div class="calculator-footer">
+            <div class="progress-bar-container">
+                <div class="progress-bar-label">Готово: <strong>0%</strong></div>
+                <div class="progress-bar"><div class="progress-bar-fill" style="width: 0%;"></div></div>
+            </div>
+            <div class="calculator-actions">
+                <button class="btn btn-secondary" id="btn-prev">&larr; Назад</button>
+                <button class="btn btn-primary" id="btn-next" disabled>Далее &rarr;</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <a href="/" class="logo">
+                <span class="logo-text">CARGUM</span>
+            </a>
+            <p class="footer-copy">&copy; 2025 CARGUM. Все права защищены.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Мобильный</h4>
+            <a href="index.html#tariffs">Тарифы</a>
+            <a href="#">Акции</a>
+            <a href="#">Бонус-очки</a>
+        </div>
+        <div class="footer-col">
+            <h4>Контакты</h4>
+            <a href="tel:+79919253030">+7 (991) 925-30-30</a>
+            <a href="mailto:hello@cargum.ru">hello@cargum.ru</a>
+            <p>г. Москва, ул. Рябиновая 55 с6/1</p>
+            <p>Ежедневно с 9:00 до 20:00</p>
+        </div>
+        <div class="footer-col">
+            <h4>Социальные сети</h4>
+            <div class="social-links">
+                <a href="#" aria-label="Telegram">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#29A9EB" />
+                        <path d="M24.292 9.164c.18-.78-.62-1.418-1.32-1.08l-15.6 7.3a.9.9 0 0 0 .12 1.7l3.76 1.18 1.46 4.62a.9.9 0 0 0 1.54.32l2.16-2.24 3.8 2.8a.9.9 0 0 0 1.42-.5l2.66-13.1Z" fill="#fff" />
+                    </svg>
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#25D366" />
+                        <path d="M16 7a8.9 8.9 0 0 0-7.63 13.3L7 25l4.86-1.3A8.93 8.93 0 1 0 16 7Zm0 16a7.1 7.1 0 0 1-3.62-.98l-.26-.16-2.89.77.78-2.82-.18-.29A7.09 7.09 0 1 1 23.1 16 7.1 7.1 0 0 1 16 23Zm3.95-5.2c-.21-.1-1.25-.61-1.45-.68s-.34-.1-.49.1c-.14.2-.56.68-.69.82-.12.13-.25.15-.46.05a5.78 5.78 0 0 1-1.7-1.05 6.3 6.3 0 0 1-1.15-1.43c-.12-.2 0-.31.09-.4.1-.09.22-.25.33-.38.1-.12.14-.2.21-.33.07-.13.03-.25 0-.35s-.49-1.18-.68-1.63c-.18-.43-.36-.37-.49-.38H13c-.13 0-.35.05-.53.25s-.7.68-.7 1.67.72 1.93.83 2.07c.1.13 1.4 2.14 3.4 3 .48.2.85.32 1.15.41.48.15.93.13 1.28.08.39-.06 1.25-.51 1.43-1s.18-.91.13-1-.18-.14-.39-.24Z" fill="#fff" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="main-script.js"></script>
+<script src="calculator-script.js"></script>
+</body>
+</html>
