@@ -45,7 +45,7 @@
   --shadow: 0 10px 30px rgba(0, 0, 50, 0.07);
   --radius: 8px;
   --transition: 0.3s;
-  --font-family: 'Gotham Pro', sans-serif; 
+  --font-family: 'Gotham Pro', sans-serif;
   --dark-blue: #343565;
   --bg-purple: #DBE2F4;
 }
@@ -62,6 +62,7 @@ body {
   color: var(--text-dark);
   line-height: 1.6;
   font-weight: 400;
+  overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
 }
 .container {
   max-width: 1320px;
@@ -69,10 +70,13 @@ body {
   padding: 0 20px;
 }
 .section-title {
-  font-size: 3.75rem;
+  /* ИЗМЕНЕНО: Уменьшен размер заголовка для лучшего баланса */
+  font-size: 3rem;
   font-weight: 600;
   text-align: left;
-  color: var(--text-dark);
+  color: var(--dark-blue);
+  /* ДОБАВЛЕНО: Добавлен отступ снизу для воздуха */
+  margin-bottom: 30px;
 }
 .btn {
   padding: 12px 24px;
@@ -130,8 +134,8 @@ body {
   padding: 15px 0;
   position: sticky;
   top: 0;
-  width: 100%; /* Добавляем, чтобы избежать сжатия */
-  z-index: 1000; /* Убедимся, что z-index очень высокий */
+  width: 100%;
+  z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 .header-container {
@@ -140,11 +144,11 @@ body {
   justify-content: space-between;
 }
 .logo-image {
-  height: 80px; 
-  width: auto; 
-  display: block; 
+  height: 80px;
+  width: auto;
+  display: block;
 }
-.logo { 
+.logo {
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -171,7 +175,8 @@ body {
 .header-phone {
   color: var(--primary-orange);
   font-weight: 700;
-  font-size: 1.563rem;
+  /* ИЗМЕНЕНО: Уменьшен размер телефона в шапке */
+  font-size: 1.35rem;
   text-decoration: none;
   transition: color var(--transition);
 }
@@ -189,45 +194,44 @@ body {
 }
 .social-icons a:hover { transform: scale(1.1); }
 .burger-menu { display: none; }
+
+/* Hero Section */
 .hero {
     user-select: none;
     position: relative;
-    overflow: visible; /* Changed to visible to allow overhanging elements if needed */
-    background-color: white; /* Фон всей секции как у следующей */
-    padding-bottom: 300px; /* Adjusted to better fit the wave extension */
+    overflow: hidden; /* ИЗМЕНЕНО: Скрываем все, что выходит за пределы секции */
+    background-color: white;
+    padding-bottom: 200px; /* ИЗМЕНЕНО: Уменьшен отступ, т.к. погрузчик теперь позиционируется иначе */
 }
-
-/* Верхняя синяя часть */
 .hero .hero-blue-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 75%; /* Высота синей области */
+    height: 75%;
     background-color: var(--dark-blue);
     background-image: url(images/hero-background.svg);
     background-size: cover;
     background-position: center;
     z-index: 1;
 }
-
-/* Контейнер для контента внутри синей области */
 .hero .hero-container {
     position: relative;
     z-index: 3;
     display: flex;
-    min-height: 650px; /* Такая же высота, как у синего фона */
+    min-height: 650px;
     align-items: center;
 }
 
-/* Текстовая часть слева */
+/* Hero Text */
 .hero .hero-text {
     flex-basis: 55%;
     color: white;
     padding-right: 40px;
 }
 .hero h1 {
-    font-size: 3.4rem;
+    /* ИЗМЕНЕНО: Слегка уменьшен размер для баланса */
+    font-size: 3.2rem;
     font-weight: 500;
     color: white;
     line-height: 1.2;
@@ -236,7 +240,8 @@ body {
 }
 .hero h1 .logo-accent { font-weight: 500; color: var(--primary-orange);}
 .hero .hero-subtitle {
-    font-size: 2.5rem;
+    /* ИЗМЕНЕНО: Значительно уменьшен подзаголовок, был слишком большим */
+    font-size: 1.8rem;
     color: white;
     margin-bottom: 40px;
     font-weight: 400;
@@ -247,7 +252,8 @@ body {
     background-color: white;
     color: var(--dark-blue);
     padding: 20px 35px;
-    font-size: 1.875rem;
+    /* ИЗМЕНЕНО: Уменьшен размер текста в плашке */
+    font-size: 1.4rem;
     font-weight: 400;
     text-align: left;
     border-radius: var(--radius);
@@ -259,62 +265,63 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Плашка "Собственный склад" */
+/* ИЗМЕНЕНО: Положение плашки "Собственный склад" исправлено, чтобы она не выезжала за экран */
 .hero .hero-warehouse-badge {
     position: absolute;
     top: 100px;
-    right: -50px;
+    right: 20px; /* Теперь она привязана к краю контейнера */
+    max-width: 290px; /* Ограничиваем ширину */
     background-color: white;
     color: var(--dark-blue);
     padding: 15px 25px;
     border-radius: var(--radius);
     font-weight: 400;
-    font-size: 1.875rem;
+    /* ИЗМЕНЕНО: Уменьшен размер текста */
+    font-size: 1.4rem;
     line-height: 1.4;
     text-align: left;
     box-shadow: var(--shadow);
     z-index: 5;
 }
 
-/* Оранжевая волна-разделитель */
+/* Hero Shape & Forklift */
 .hero .hero-bottom-shape {
     position: absolute;
-    top: 55%;
+    bottom: 0; /* ИЗМЕНЕНО: Привязка к низу секции */
     width: 100%;
-    height: 45%;
+    height: 350px; /* ИЗМЕНЕНО: Задана высота волны */
     background-image: url(images/hero-shape.svg);
     background-size: cover;
+    background-position: center bottom;
     background-repeat: no-repeat;
-    z-index: 3; /* Над текстом, под погрузчиком */
+    z-index: 2;
 }
-
-/* Погрузчик */
 .hero .hero-image-forklift {
     position: absolute;
-    right: 0;
-    bottom: -200px; /* Adjusted to better align wheels with the wave */
-    width: 50%;
-    max-width: 800px;
+    right: 5%; /* ИЗМЕНЕНО: Позиционирование в процентах для адаптивности */
+    bottom: 50px; /* ИЗМЕНЕНО: Скорректировано положение, чтобы он "сидел" на волне */
+    width: 45%;
+    max-width: 750px;
     height: 550px;
     background-image: url(images/hero-forklift.svg);
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    z-index: 5; /* Самый высокий слой, чтобы колеса были поверх волны */
-}
-/* --- Секция "Поставка в 3 шага" --- */
-.delivery-steps {
-    position: relative; /* Нужно для z-index */
-    z-index: 2; /* Z-index ниже, чем у волны (которая имеет z-index: 3) */
-    margin-top: -120px; /* Увеличенный отрицательный отступ для поднятия секции */
-    padding: 60px 0;
-    background-color: white; /* Белый фон, чтобы секция не была прозрачной */
-}
-.delivery-steps .section-title {
-    color: var(--dark-blue); /* Заголовок должен быть темным на светлом фоне */
+    background-position: bottom center;
+    z-index: 5;
 }
 
-/* Остальные стили для секции 3 шага */
+/* Delivery Steps Section */
+.delivery-steps {
+    position: relative;
+    z-index: 2;
+    /* ИЗМЕНЕНО: Скорректирован отрицательный отступ */
+    margin-top: -100px;
+    padding: 60px 0;
+    background-color: white;
+}
+.delivery-steps .section-title {
+    color: var(--dark-blue);
+}
 .delivery-steps-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -326,22 +333,24 @@ body {
     min-height: 450px;
 }
 .shipped-badge {
-    background-color: var(--dark-blue); /* Убедимся, что фон установлен */
+    background-color: var(--dark-blue);
     color: white;
-    padding: 25px 35px; /* Скорректируем отступы для лучшего вида */
-    border-radius: 0 60px 60px 0; /* Эта строка создает скругление только справа */
-    font-size: 1.6rem;
-    font-weight: 400; /* Основной текст делаем обычным */
+    padding: 25px 35px;
+    border-radius: 0 60px 60px 0;
+    /* ИЗМЕНЕНО: Уменьшен размер текста */
+    font-size: 1.3rem;
+    font-weight: 400;
     line-height: 1.4;
     text-align: left;
     display: inline-block;
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 2; /* Бейдж должен быть НАД картинкой */
+    z-index: 2;
 }
 .shipped-badge strong {
-    font-size: 3.75rem;
+    /* ИЗМЕНЕНО: Уменьшен размер цифр */
+    font-size: 3.2rem;
     font-weight: 700;
 }
 .delivery-steps-image {
@@ -352,9 +361,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* --- Ключевые изменения здесь --- */
-    background-size: cover; /* Заполняем все пространство */
-    background-position: left center; /* Выравниваем по левому краю */
+    background-size: cover;
+    background-position: left center;
     z-index: 1;
 }
 .steps-list {
@@ -368,7 +376,8 @@ body {
     gap: 25px;
 }
 .step-number {
-    font-size: 4.5rem;
+    /* ИЗМЕНЕНО: Уменьшен размер номера шага */
+    font-size: 3.5rem;
     font-weight: 700;
     color: var(--primary-orange);
     line-height: 1;
@@ -397,27 +406,18 @@ body {
     gap: 20px;
 }
 
-/* Оранжевая волна-разделитель */
-.delivery-steps .delivery-steps-bottom-shape {
-    position: absolute;
-    top: 75%;
-    transform: rotate(3.142rad);
-    width: 100%;
-    height: 45%;
-    background-image: url(images/hero-shape.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 3; /* Над текстом, под погрузчиком */
-}
-
-/* --- Остальные секции --- */
+/* Warehouses Section */
 .warehouses { padding: 60px 0; background-color: var(--bg-lighter); }
-.warehouses-list { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.warehouses-list { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px; justify-content: center; } /* ДОБАВЛЕНО: центрирование */
 .warehouses-list span { background-color: white; padding: 8px 16px; border-radius: 20px; box-shadow: var(--shadow); font-size: 0.95rem; }
 .warehouses-image-placeholder { height: 200px; background-image: url(images/warehouses-image.svg); background-size: contain; background-repeat: no-repeat; background-position: center; }
+
+/* Stats Section */
 .stats { padding: 40px 0; text-align: left; }
 .stats .section-title { margin-bottom: 20px; }
 .stats .btn { display: inline-block; }
+
+/* Services Section */
 .services { padding: 60px 0; }
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
 .service-card { background-color: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); text-align: left; }
@@ -428,6 +428,8 @@ body {
 .cta-banner h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
 .cta-banner p { font-size: 1rem; margin-bottom: 20px; }
 .cta-banner .btn { display: inline-block; }
+
+/* Tariffs Section */
 .tariffs { padding: 60px 0; background-color: var(--bg-lighter); }
 .table-wrapper { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
 table { width: 100%; border-collapse: collapse; }
@@ -435,27 +437,49 @@ th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border)
 th { background-color: #fff3e0; color: var(--secondary-orange); font-weight: 700; }
 td { background-color: white; }
 .tariffs-notes { margin-top: 20px; font-size: 0.9rem; color: var(--text-light); }
-.delivery-stats { padding: 60px 0; }
+
+/* Delivery Stats Section */
+.delivery-stats { padding: 60px 0; text-align: center; } /* ИЗМЕНЕНО: Центрирование контента */
 .delivery-image-placeholder { height: 250px; background-image: url(images/delivery-image.svg); background-size: contain; background-repeat: no-repeat; background-position: center; margin-bottom: 20px; }
-.delivery-stats h2 { font-size: 2.5rem; font-weight: 800; text-align: left; margin-bottom: 15px; color: var(--text-dark); }
-.delivery-stats p { color: var(--text-light); margin-bottom: 10px; }
+.delivery-stats h2 {
+    /* ИЗМЕНЕНО: Уменьшен размер и жирность */
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+.delivery-stats p { color: var(--text-light); margin-bottom: 10px; max-width: 600px; margin-left: auto; margin-right: auto;} /* ДОБАВЛЕНО: Ограничение ширины для читаемости */
 .delivery-stats .btn { margin-top: 20px; }
+
+/* Benefits Section */
 .benefits { padding: 60px 0; background-color: var(--bg-lighter); }
 .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .benefit-item { background-color: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); }
 .benefit-item h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
 .benefit-item p { color: var(--text-light); font-size: 0.95rem; }
+
+/* Reviews Section */
 .reviews { padding: 60px 0; }
-.reviews-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+/* ИЗМЕНЕНО: Сетка стала более гибкой */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
 .review-card { background-color: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); }
 .stars { color: #FFD700; margin-bottom: 10px; }
 .review-date { font-size: 0.85rem; color: var(--text-light); margin-top: 10px; }
+
+/* Map & Contact Form */
 .map { padding: 60px 0; background-color: var(--bg-lighter); }
 .map-container { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .contact-form { padding: 60px 0; }
 .contact-form form { display: flex; gap: 15px; max-width: 800px; margin: 30px auto 0; }
 .contact-form input { flex: 1; padding: 15px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 1rem; }
 .contact-form button { padding: 15px 30px; }
+
+/* FAQ Section */
 .faq { padding: 60px 0; background-color: var(--bg-lighter); }
 .faq-accordion { max-width: 800px; margin: 0 auto; }
 .faq-item { border-bottom: 1px solid var(--border); }
@@ -477,65 +501,29 @@ td { background-color: white; }
 .social-links svg { width: 24px; height: 24px; fill: white; }
 .social-links a:hover svg { fill: var(--primary-orange); }
 
-/* --- Улучшения для больших экранов (4K и выше) --- */
-@media (min-width: 1920px) {
-  .container {
-    max-width: 1600px;
-  }
-  .section-title {
-    font-size: 4.5rem;
-  }
-  .hero h1 {
-    font-size: 4rem;
-  }
-  .hero .hero-subtitle {
-    font-size: 3rem;
-  }
-  .hero .hero-warehouse-badge {
-    font-size: 2.25rem;
-    padding: 20px 30px;
-    right: -300px;
-  }
-  .hero .hero-discount-badge {
-    font-size: 2.25rem;
-    padding: 25px 40px;
-  }
-  .hero .hero-image-forklift {
-    max-width: 1000px;
-    height: 700px;
-  }
-  .delivery-steps-left {
-    min-height: 550px;
-  }
-  .shipped-badge {
-    font-size: 2rem;
-    padding: 30px 40px;
-  }
-  .shipped-badge strong {
-    font-size: 4.5rem;
-  }
-  .step-number {
-    font-size: 5.5rem;
-  }
-  .step-content h3 {
-    font-size: 1.8rem;
-  }
-}
 
 /* --- Responsive --- */
+
+@media (min-width: 1920px) {
+  .container { max-width: 1600px; }
+  .section-title { font-size: 3.5rem; }
+  .hero h1 { font-size: 4rem; }
+  .hero .hero-subtitle { font-size: 2.2rem; }
+  .hero .hero-warehouse-badge { font-size: 1.5rem; }
+  .hero .hero-discount-badge { font-size: 1.6rem; }
+  .hero .hero-image-forklift { max-width: 900px; height: 650px; right: 8%; }
+}
+
 @media (max-width: 1200px) {
   .hero .hero-text { flex-basis: 50%; }
-  .hero .hero-image-forklift { width: 55%; }
+  .hero .hero-image-forklift { width: 50%; }
   .services-grid, .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero .hero-warehouse-badge {
-    right: -200px;
-  }
+  .hero .hero-warehouse-badge { top: 80px; }
 }
 
 @media (max-width: 992px) {
-    .hero { text-align: center; }
+    .hero { text-align: center; padding-bottom: 60px; }
     .hero .hero-container {
         flex-direction: column;
         justify-content: center;
@@ -549,8 +537,7 @@ td { background-color: white; }
         margin-bottom: 30px;
         display: inline-block;
     }
-    .delivery-steps { margin-top: 0; } /* Убираем отрицательный отступ на мобильных */
-
+    .delivery-steps { margin-top: 0; }
     .delivery-steps-wrapper {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -558,7 +545,7 @@ td { background-color: white; }
     .delivery-steps-right { order: -1; }
     .delivery-steps-left { min-height: 300px; }
     .shipped-badge {
-      border-radius: 60px; /* Полное скругление на малых экранах для лучшего вида */
+      border-radius: 60px;
     }
 }
 
@@ -570,54 +557,27 @@ td { background-color: white; }
   .header-actions { gap: 10px; }
   .header-phone, .social-icons, .header-actions .btn-dark-blue { display: none; }
 
-  .hero h1 { font-size: 2.2rem; }
-  .hero .hero-subtitle { font-size: 1.2rem; }
-  .hero .hero-warehouse-badge {
-    font-size: 1.25rem;
-    padding: 10px 15px;
-  }
-  .hero .hero-discount-badge {
-    font-size: 1.25rem;
-    padding: 15px 25px;
-  }
+  /* ИЗМЕНЕНО: Скорректированы размеры для мобильных */
+  .section-title { font-size: 2.2rem; text-align: center; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero .hero-subtitle { font-size: 1.3rem; }
+  .hero .hero-warehouse-badge { font-size: 1.2rem; }
+  .hero .hero-discount-badge { font-size: 1.3rem; padding: 15px 25px; }
 
-  .services-grid, .benefits-grid, .reviews-grid { grid-template-columns: 1fr; }
+  .services-grid, .benefits-grid { grid-template-columns: 1fr; }
   .contact-form form { flex-direction: column; }
   .footer-grid { grid-template-columns: 1fr; }
-  .section-title { font-size: 2rem; text-align: center; }
-  .shipped-badge {
-    font-size: 1.2rem;
-    padding: 15px 20px;
-  }
-  .shipped-badge strong {
-    font-size: 2.5rem;
-  }
-  .step-number {
-    font-size: 3rem;
-  }
-  .step-content h3 {
-    font-size: 1.2rem;
-  }
-  .warehouses-image-placeholder {
-    height: 150px;
-  }
-  .delivery-image-placeholder {
-    height: 200px;
-  }
-  .delivery-stats h2 {
-    font-size: 2rem;
-    text-align: center;
-  }
-  .cta-banner {
-    text-align: center;
-  }
-  .cta-banner h3 {
-    font-size: 1.2rem;
-  }
-  th, td {
-    padding: 10px;
-    font-size: 0.9rem;
-  }
+
+  .shipped-badge { font-size: 1.2rem; padding: 15px 20px; }
+  .shipped-badge strong { font-size: 2.5rem; }
+  .step-number { font-size: 3rem; }
+  .step-content h3 { font-size: 1.2rem; }
+  .warehouses-image-placeholder { height: 150px; }
+  .delivery-image-placeholder { height: 200px; }
+  .delivery-stats h2 { font-size: 2rem; text-align: center; }
+  .cta-banner { text-align: center; }
+  .cta-banner h3 { font-size: 1.2rem; }
+  th, td { padding: 10px; font-size: 0.9rem; }
 }
 
 @media (max-width: 480px) {
@@ -629,100 +589,57 @@ td { background-color: white; }
   .section-title { font-size: 1.8rem; }
   .hero h1 { font-size: 1.8rem; }
   .hero .hero-subtitle { font-size: 1rem; }
-  .shipped-badge {
-    font-size: 1rem;
-    padding: 10px 15px;
-  }
-  .shipped-badge strong {
-    font-size: 2rem;
-  }
-  .step-number {
-    font-size: 2.5rem;
-  }
-  .step-content h3 {
-    font-size: 1rem;
-  }
-  .price {
-    font-size: 1.5rem;
-  }
-  .service-card h4 {
-    font-size: 1rem;
-  }
-  .benefit-item h4 {
-    font-size: 1rem;
-  }
-  .faq-question {
-    font-size: 1rem;
-  }
-  .warehouses-image-placeholder {
-    height: 120px;
-  }
-  .delivery-image-placeholder {
-    height: 150px;
-  }
-  .logo-image {
-    height: 60px;
-  }
-  .nav-link {
-    font-size: 1rem;
-  }
+  .shipped-badge { font-size: 1rem; padding: 10px 15px; }
+  .shipped-badge strong { font-size: 2rem; }
+  .step-number { font-size: 2.5rem; }
+  .step-content h3 { font-size: 1rem; }
+  .price { font-size: 1.5rem; }
+  .service-card h4, .benefit-item h4, .faq-question { font-size: 1rem; }
+  .warehouses-image-placeholder { height: 120px; }
+  .delivery-image-placeholder { height: 150px; }
+  .logo-image { height: 60px; }
+  .nav-link { font-size: 1rem; }
 }
 
-@media (max-width: 375px) { /* Для iPhone SE (320px) и подобных */
-  .container { padding: 0 10px; }
-  .section-title { font-size: 1.5rem; }
-  .hero h1 { font-size: 1.5rem; }
-  .hero .hero-subtitle { font-size: 0.9rem; }
-  .hero .hero-warehouse-badge {
-    font-size: 1rem;
-    padding: 8px 12px;
-  }
-  .hero .hero-discount-badge {
-    font-size: 1rem;
-    padding: 10px 15px;
-  }
-  .shipped-badge {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-    border-radius: 30px;
-  }
-  .shipped-badge strong {
-    font-size: 1.8rem;
-  }
-  .step-item {
-    gap: 15px;
-  }
-  .step-number {
-    font-size: 2rem;
-  }
-  .step-content p {
-    font-size: 0.9rem;
-  }
-  .price {
-    font-size: 1.2rem;
-  }
-  th, td {
-    padding: 8px;
-    font-size: 0.8rem;
-  }
-  .delivery-stats h2 {
-    font-size: 1.5rem;
-  }
-  .benefit-item p, .service-card .description {
-    font-size: 0.85rem;
-  }
-  .contact-form input {
-    padding: 12px;
-    font-size: 0.9rem;
-  }
-  .contact-form button {
-    padding: 12px 20px;
-  }
-  .faq-question {
-    font-size: 0.9rem;
-    padding: 15px 0;
-  }
-  .faq-question:after {
-    font-size: 1.2rem;
-  }
+/* --- Секция калькулятора (без изменений) --- */
+.calculator-section {
+  padding: 80px 0;
+  background-color: var(--bg-lighter);
+}
+.calculator-section .section-title,
+.calculator-section .calculator-subtitle {
+  text-align: center;
+}
+.calculator-section .calculator-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 15px auto 0;
+}
+.calculator-section .iframe-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 50, 0.1);
+  border-radius: 24px;
+  overflow: hidden;
+}
+.calculator-section iframe {
+  width: 100%;
+  height: 740px;
+  border: none;
+  display: block;
+}
+@media (max-width: 768px) {
+    .calculator-section {
+        padding: 40px 0;
+    }
+    .calculator-section iframe {
+        height: 850px;
+    }
+    .calculator-section .iframe-container {
+        border-radius: 0;
+        box-shadow: none;
+        margin-top: 25px;
+    }
 }
