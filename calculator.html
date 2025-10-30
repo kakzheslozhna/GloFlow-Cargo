@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости — GloFlow Cargo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="calculator-style.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='20' fill='url(%23logo-gradient-favicon)'/%3E%3Cpath d='M15.5 28C22.4036 28 28 22.4036 28 15.5C28 8.59644 22.4036 3 15.5 3C8.59644 3 3 8.59644 3 15.5C3 22.4036 8.59644 28 15.5 28Z' fill='white' style='mix-blend-mode:overlay'/%3E%3Cdefs%3E%3ClinearGradient id='logo-gradient-favicon' x1='0' y1='0' x2='40' y2='40' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23F09819'/%3E%3Cstop offset='1' stop-color='%23EDDE5D'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
+</head>
+<body>
+    <div class="form-wrapper">
+        <div class="form-container">
+            <!-- HEADER -->
+            <div class="form-header">
+                <a href="/" class="logo" aria-label="Вернуться на главную">
+                     <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#F09819"/><stop offset="1" stop-color="#FF512F"/></linearGradient></defs><circle cx="20" cy="20" r="20" fill="url(#logo-gradient)"/><path d="M15.5 28C22.4036 28 28 22.4036 28 15.5C28 8.59644 22.4036 3 15.5 3C8.59644 3 3 8.59644 3 15.5C3 22.4036 8.59644 28 15.5 28Z" fill="white" style="mix-blend-mode:overlay"/></svg>
+                    <span class="logo-text">GloFlow Cargo</span>
+                </a>
+                <div class="form-progress">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1"><span>1</span></div>
+                        <div class="progress-step" data-step="2"><span>2</span></div>
+                        <div class="progress-step" data-step="3"><span>3</span></div>
+                    </div>
+                </div>
+                 <div class="mobile-step-indicator">
+                    Шаг <span id="mobile-current-step">1</span> из 3
+                </div>
+            </div>
+
+            <!-- FORM STEPS -->
+            <form id="multi-step-form" novalidate>
+                <div class="form-steps-container">
+
+                    <!-- Шаг 1: Направление и тип -->
+                    <div class="form-step active" data-step="1">
+                        <h3 class="step-title">Куда доставить груз?</h3>
+                        <div class="form-grid-single">
+                            <div class="form-group">
+                                <label for="destination">Склад Wildberries</label>
+                                <select id="destination" name="destination" required>
+                                    <option value="" disabled selected>Выберите направление</option>
+                                    <option value="Краснодар">Краснодар</option>
+                                    <option value="Санкт-Петербург">Санкт-Петербург</option>
+                                    <option value="Казань">Казань</option>
+                                    <option value="Екатеринбург">Екатеринбург</option>
+                                    <option value="Тула(Алексин)">Тула(Алексин)</option>
+                                    <option value="Рязань">Рязань</option>
+                                    <option value="Котовск">Котовск</option>
+                                    <option value="Новосемейкино">Новосемейкино</option>
+                                    <option value="Сарапул">Сарапул</option>
+                                    <option value="Коледино">Коледино</option>
+                                    <option value="Подольск">Подольск</option>
+                                    <option value="Подольск 3">Подольск 3</option>
+                                    <option value="Подольск 4">Подольск 4</option>
+                                    <option value="Электросталь">Электросталь</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Вариант поставки</label>
+                                <div class="selection-grid">
+                                    <div class="selection-item"><input type="radio" id="type-box" name="deliveryType" value="Короб"><label for="type-box">Короб</label></div>
+                                    <div class="selection-item"><input type="radio" id="type-pallet" name="deliveryType" value="Паллета"><label for="type-pallet">Паллета</label></div>
+                                    <div class="selection-item"><input type="radio" id="type-volume" name="deliveryType" value="м³"><label for="type-volume">м<sup>3</sup></label></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons-group"><button type="button" class="next-step-btn primary-button">Далее</button></div>
+                    </div>
+
+                    <!-- Шаг 2: Параметры и услуги -->
+                    <div class="form-step" data-step="2">
+                        <h3 class="step-title">Параметры и услуги</h3>
+                        <!-- Контейнер для динамических полей -->
+                        <div id="calculator-options">
+                            <div class="conditional-input-group" data-type="Короб">
+                                <div class="form-group">
+                                    <label for="box-quantity">Количество коробов, шт</label>
+                                    <input type="number" id="box-quantity" class="quantity-input" min="1" placeholder="0">
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="box-pickup-service" name="pickup">
+                                    <label for="box-pickup-service">Нужен забор с моего склада</label>
+                                </div>
+                            </div>
+                            <div class="conditional-input-group" data-type="Паллета">
+                                <div class="form-group">
+                                    <label for="pallet-quantity">Количество паллет, шт</label>
+                                    <input type="number" id="pallet-quantity" class="quantity-input" min="1" placeholder="0">
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="palletizing-service" name="palletizing">
+                                    <label for="palletizing-service">Требуется паллетирование</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="pallet-pickup-service" name="pickup">
+                                    <label for="pallet-pickup-service">Нужен забор с моего склада</label>
+                                </div>
+                            </div>
+                            <div class="conditional-input-group" data-type="м³">
+                                <div class="form-group">
+                                    <label for="volume-quantity">Объем, м<sup>3</sup></label>
+                                    <input type="number" id="volume-quantity" class="quantity-input" min="0.1" step="0.1" placeholder="0.0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons-group">
+                            <button type="button" class="prev-step-btn secondary-button">Назад</button>
+                            <button type="button" class="next-step-btn primary-button">Рассчитать</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Шаг 3: Результат -->
+                    <div class="form-step" data-step="3">
+                        <h3 class="step-title">Ваш расчет</h3>
+                        <div class="calculation-summary">
+                            <div class="summary-item">
+                                <span>Направление:</span>
+                                <strong id="summary-destination">--</strong>
+                            </div>
+                            <div class="summary-item">
+                                <span>Тип поставки:</span>
+                                <strong id="summary-type">--</strong>
+                            </div>
+                             <div class="summary-item">
+                                <span>Количество:</span>
+                                <strong id="summary-quantity">--</strong>
+                            </div>
+                            <div class="summary-item" id="summary-extras-row" style="display: none;">
+                                <span>Доп. услуги:</span>
+                                <strong id="summary-extras-price">0 ₽</strong>
+                            </div>
+                            <div class="summary-total">
+                                <span>Итого:</span>
+                                <strong id="summary-total-price">0 ₽</strong>
+                            </div>
+                            <p class="summary-note">*Расчет является предварительным и не является публичной офертой.</p>
+                        </div>
+                        <div class="buttons-group">
+                            <button type="button" class="prev-step-btn secondary-button">Назад</button>
+                            <a href="order.html" class="primary-button">Оформить заявку</a>
+                        </div>
+                         <div class="buttons-group" style="margin-top: 15px;">
+                             <button type="button" id="reset-calc-btn" class="secondary-button full-width">Новый расчет</button>
+                         </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="calculator-script.js"></script>
+</body>
+</html>
